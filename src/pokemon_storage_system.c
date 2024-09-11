@@ -589,7 +589,8 @@ EWRAM_DATA static u8 sMovingMonOrigBoxId = 0;
 EWRAM_DATA static u8 sMovingMonOrigBoxPos = 0;
 EWRAM_DATA static bool8 sAutoActionOn = 0;
 EWRAM_DATA static bool8 sJustOpenedBag = 0;
-EWRAM_DATA static u8 sFollowerIndex = 0;
+
+#define FOLLOWER_IN_HAND    0xFD
 
 // Main tasks
 static void Task_InitPokeStorage(u8);
@@ -2111,10 +2112,6 @@ static void Task_InitPokeStorage(u8 taskId)
         SetVBlankCallback(NULL);
         SetGpuReg(REG_OFFSET_DISPCNT, 0);
         ResetForPokeStorage();
-        // sFollowerIndex is aligned with the value in saveblock.
-        // Used to keep track of follower's position when it's
-        // picked up in the hand by misaligning the value.
-        sFollowerIndex = gSaveBlock3Ptr->followerIndex;
         if (sStorage->isReopening)
         {
             switch (sWhichToReshow)
@@ -2761,9 +2758,7 @@ static void Task_MoveMon(u8 taskId)
     {
     case 0:
         if (gSaveBlock3Ptr->followerIndex == sCursorPosition && sCursorArea == CURSOR_AREA_IN_PARTY)
-            sFollowerIndex = sCursorPosition + 0xF;
-            // sFollowerIndex is misaligned from gSaveBlock3Ptr->followerIndex
-            // to show that the follower is currently in hand.
+            gSaveBlock3Ptr->followerIndex = FOLLOWER_IN_HAND;
         InitMonPlaceChange(CHANGE_GRAB);
         sStorage->state++;
         break;
@@ -2784,19 +2779,14 @@ static void Task_PlaceMon(u8 taskId)
     switch (sStorage->state)
     {
     case 0:
-        if (gSaveBlock3Ptr->followerIndex != sFollowerIndex)
+        if (gSaveBlock3Ptr->followerIndex == FOLLOWER_IN_HAND)
         {
             if (sCursorArea == CURSOR_AREA_IN_PARTY)
-            {
-                sFollowerIndex = sCursorPosition;
                 gSaveBlock3Ptr->followerIndex = sCursorPosition;
-            }
             else if (sCursorArea == CURSOR_AREA_IN_BOX)
             {
-                sFollowerIndex = OW_FOLLOWER_NOT_SET;
                 gSaveBlock3Ptr->followerIndex = OW_FOLLOWER_NOT_SET;
                 gFollowerSteps = 0;
-                // Follower was placed in a box, so the follower gets defaulted to "not set."
             }
         }
         InitMonPlaceChange(CHANGE_PLACE);
@@ -6481,25 +6471,19 @@ static void SetShiftedMonData(u8 boxId, u8 position)
 {
     if (boxId == TOTAL_BOXES_COUNT)
     {
-        if (sFollowerIndex != gSaveBlock3Ptr->followerIndex) // Follower is currently in hand, about to be shifted down to party.
-        {
+        if (gSaveBlock3Ptr->followerIndex == FOLLOWER_IN_HAND)
             gSaveBlock3Ptr->followerIndex = position;
-            sFollowerIndex = position;
-        }
-        else if (gSaveBlock3Ptr->followerIndex == position) // Follower is about to be shifted to hand.
-        {
-            sFollowerIndex += 0xF;
-        }
+        else if (gSaveBlock3Ptr->followerIndex == position)
+            gSaveBlock3Ptr->followerIndex = FOLLOWER_IN_HAND;
+
         sStorage->tempMon = gPlayerParty[position];
     }
     else
     {
-        if (sFollowerIndex != gSaveBlock3Ptr->followerIndex)
+        if (gSaveBlock3Ptr->followerIndex == FOLLOWER_IN_HAND)
         {
-            sFollowerIndex = OW_FOLLOWER_NOT_SET;
             gSaveBlock3Ptr->followerIndex = OW_FOLLOWER_NOT_SET;
             gFollowerSteps = 0;
-            // Follower was shifted to a box, so the follower gets defaulted to "not set."
         }
         BoxMonAtToMon(boxId, position, &sStorage->tempMon);
     }
@@ -6528,7 +6512,6 @@ static bool8 TryStorePartyMonInBox(u8 boxId)
         if (gSaveBlock3Ptr->followerIndex == sCursorPosition)
         {
             gSaveBlock3Ptr->followerIndex = OW_FOLLOWER_NOT_SET;
-            sFollowerIndex = OW_FOLLOWER_NOT_SET;
             gFollowerSteps = 0;
         }
         SetMovingMonData(TOTAL_BOXES_COUNT, sCursorPosition);
@@ -6597,7 +6580,6 @@ static void ReleaseMon(void)
             if (gSaveBlock3Ptr->followerIndex == sCursorPosition)
             {
                 gSaveBlock3Ptr->followerIndex = OW_FOLLOWER_NOT_SET;
-                sFollowerIndex = OW_FOLLOWER_NOT_SET;
                 gFollowerSteps = 0;
             }
         }
@@ -6882,10 +6864,7 @@ s16 CompactPartySlots(void)
             {
                 gPlayerParty[last] = gPlayerParty[i];
                 if (gSaveBlock3Ptr->followerIndex == i)
-                {
                     gSaveBlock3Ptr->followerIndex--;
-                    sFollowerIndex = gSaveBlock3Ptr->followerIndex;
-                }
             }
             last++;
         }
