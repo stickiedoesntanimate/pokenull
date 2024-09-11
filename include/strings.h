@@ -2175,10 +2175,6 @@ extern const u8 gText_Register[];
 extern const u8 gText_Trade4[];
 extern const u8 gText_Summary5[];
 extern const u8 gText_Switch2[];
-extern const u8 gText_FollowMe[];
-extern const u8 gText_UnfollowMe[];
-extern const u8 gText_MonFollowing[];
-extern const u8 gText_MonNotFollowing[];
 extern const u8 gText_Item[];
 extern const u8 gText_NotPkmnOtherTrainerWants[];
 extern const u8 gText_ThatIsntAnEgg[];
@@ -3049,5 +3045,16 @@ extern const u8 gText_PlantBerry[];
 // Map name pop-up
 extern const u8 gText_AM[];
 extern const u8 gText_PM[];
+
+// Follower party menu
+extern const u8 gText_Follower[];
+extern const u8 gText_FollowerSet[];
+extern const u8 gText_FollowerReturn[];
+extern const u8 gText_FollowerUnset[];
+extern const u8 gText_FollowerPreferred[];
+extern const u8 gText_FollowerDefaulted[];
+extern const u8 gText_FollowerFainted[];
+extern const u8 gText_FollowerReturnedToBall[];
+extern const u8 gText_DoWhatWithFollower[];
 
 #endif // GUARD_STRINGS_H
