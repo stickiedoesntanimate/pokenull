@@ -772,7 +772,7 @@ static void InheritAbility(struct Pokemon *egg, struct BoxPokemon *father, struc
 
 // Counts the number of egg moves a Pokémon learns and stores the moves in
 // the given array.
-static u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
+u8 GetEggMoves(struct Pokemon *pokemon, u16 *eggMoves)
 {
     u16 numEggMoves;
     u16 species;

@@ -457,6 +457,10 @@ struct SpeciesInfo /*0xC4*/
 #endif //OW_PKMN_OBJECTS_SHARE_PALETTES
 #endif //OW_POKEMON_OBJECT_EVENTS
 };
+    #ifndef BATTLE_ENGINE
+ /* 0x1A */ u8 abilityHidden;
+    #endif
+}; /* size = 28 */
 
 struct MoveInfo
 {
