@@ -460,7 +460,7 @@ struct SpeciesInfo /*0xC4*/
     #ifndef BATTLE_ENGINE
  /* 0x1A */ u8 abilityHidden;
     #endif
-}; /* size = 28 */
+ /* size = 28 */
 
 struct MoveInfo
 {

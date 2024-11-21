@@ -449,7 +449,7 @@ static void DrawDexNavSearchMonIcon(u16 species, u8 *dst, bool8 owned)
     u8 spriteId;
 
     LoadMonIconPalette(species);
-    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF, 0);
+    spriteId = CreateMonIcon(species, SpriteCB_MonIcon, SPECIES_ICON_X - 6, GetSearchWindowY() + 8, 0, 0xFFFFFFFF);
     gSprites[spriteId].oam.priority = 0;
     *dst = spriteId;
     
@@ -495,7 +495,7 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
     }
     else
     {
-        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar1, GetSpeciesName(species));
         AddTextPrinterParameterized3(sDexNavSearchDataPtr->windowId, 0, WINDOW_COL_0, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
     }
     
@@ -510,7 +510,7 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
         // move
         if (searchLevel > 1 && sDexNavSearchDataPtr->moves[0])
         {
-            StringCopy(gStringVar1, gMoveNames[sDexNavSearchDataPtr->moves[0]]);
+            StringCopy(gStringVar1, GetMoveName(sDexNavSearchDataPtr->moves[0]));
             StringExpandPlaceholders(gStringVar4, sText_EggMove);
             AddTextPrinterParameterized3(windowId, 0, WINDOW_MOVE_NAME_X, 0, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar4);
         }
@@ -518,7 +518,7 @@ static void AddSearchWindowText(u16 species, u8 proximity, u8 searchLevel, bool8
         if (searchLevel > 2)
         {            
             // ability name
-            StringCopy(gStringVar1, gAbilityNames[GetAbilityBySpecies(species, sDexNavSearchDataPtr->abilityNum)]);
+            StringCopy(gStringVar1, gAbilitiesInfo[GetAbilityBySpecies(species, sDexNavSearchDataPtr->abilityNum)].name);
             AddTextPrinterParameterized3(windowId, 0, WINDOW_COL_1 + 16, 12, sSearchFontColor, TEXT_SKIP_DRAW, gStringVar1);
         
             // item name
@@ -711,7 +711,7 @@ static bool8 DexNavPickTile(u8 environment, u8 areaX, u8 areaY, bool8 smallScan)
 
 static bool8 TryStartHiddenMonFieldEffect(u8 environment, u8 xSize, u8 ySize, bool8 smallScan)
 {
-    u32 i;
+    //u32 i;
     u8 currMapType = GetCurrentMapType();
     u8 fldEffId = 0;
     
@@ -812,10 +812,10 @@ static u8 GetSearchLevel(u16 dexNum)
 #define tRevealed           data[4]
 static void Task_SetUpDexNavSearch(u8 taskId)
 {
-    struct Task *task = &gTasks[taskId];
+    //struct Task *task = &gTasks[taskId];
     
     u16 species = sDexNavSearchDataPtr->species;
-    u8 environment = sDexNavSearchDataPtr->environment;
+    //u8 environment = sDexNavSearchDataPtr->environment;
     u8 searchLevel = GetSearchLevel(SpeciesToNationalPokedexNum(species));
 
     // init sprites
@@ -857,7 +857,7 @@ static void Task_SetUpDexNavSearch(u8 taskId)
 static void Task_InitDexNavSearch(u8 taskId)
 {
     struct Task *task = &gTasks[taskId];
-    u8 searchLevel;
+    //u8 searchLevel;
     u16 species = task->tSpecies;
     u8 environment = task->tEnvironment;
     
@@ -954,7 +954,7 @@ static void DexNavUpdateDirectionArrow(void)
 
 static void DexNavDrawIcons(void)
 {
-    u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
+    //u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
     u16 species = sDexNavSearchDataPtr->species;
     
     // init sprite ids
@@ -1063,8 +1063,8 @@ static void Task_RevealHiddenMon(u8 taskId)
 
 static void Task_DexNavSearch(u8 taskId)
 {
-    u16 species;
-    s16 x, y;
+    //u16 species;
+    //s16 x, y;
     struct Task *task = &gTasks[taskId];
     
     if (sDexNavSearchDataPtr->proximity > MAX_PROXIMITY)
@@ -1140,7 +1140,7 @@ static void Task_DexNavSearch(u8 taskId)
         && sDexNavSearchDataPtr->proximity < GetMovementProximityBySearchLevel() && sDexNavSearchDataPtr->movementCount < 2
         && task->tRevealed)
     {
-        bool8 ret;
+        //bool8 ret;
         
         FieldEffectStop(&gSprites[sDexNavSearchDataPtr->fldEffSpriteId], sDexNavSearchDataPtr->fldEffId);
         while (1) {
@@ -2011,9 +2011,9 @@ static void TryDrawIconInSlot(u16 species, s16 x, s16 y)
     if (species == SPECIES_NONE || species > NUM_SPECIES)
         CreateNoDataIcon(x, y);   //'X' in slot
     else if (!GetSetPokedexFlag(SpeciesToNationalPokedexNum(species), FLAG_GET_SEEN))
-        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF, 0); //question mark
+        CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark
     else
-        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF, 0);
+        CreateMonIcon(species, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF);
 }
 
 static void DrawSpeciesIcons(void)
@@ -2049,7 +2049,7 @@ static void DrawSpeciesIcons(void)
        else if (species == SPECIES_NONE || species > NUM_SPECIES)
             CreateNoDataIcon(x, y);
         else
-            CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF, 0); //question mark if detector mode inactive
+            CreateMonIcon(SPECIES_NONE, SpriteCB_MonIcon, x, y, 0, 0xFFFFFFFF); //question mark if detector mode inactive
     }
 }
 
@@ -2131,9 +2131,9 @@ static void SetTypeIconPosAndPal(u8 typeId, u8 x, u8 y, u8 spriteArrayId)
 
 static void PrintCurrentSpeciesInfo(void)
 {
-    u8 searchLevelBonus = 0;
+    //u8 searchLevelBonus = 0;
     u16 species = DexNavGetSpecies();
-    u32 i;
+    //u32 i;
     u16 dexNum = SpeciesToNationalPokedexNum(species);
     u8 type1, type2;
     
@@ -2147,7 +2147,7 @@ static void PrintCurrentSpeciesInfo(void)
     if (species == SPECIES_NONE)
         AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SPECIES_INFO_Y, sFontColor_Black, 0, sText_DexNav_NoInfo);
     else
-        AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SPECIES_INFO_Y, sFontColor_Black, 0, gSpeciesNames[species]);
+        AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, SPECIES_INFO_Y, sFontColor_Black, 0, GetSpeciesName(species));
     
     //type icon(s)
     type1 = gSpeciesInfo[species].types[0];
@@ -2186,10 +2186,10 @@ static void PrintCurrentSpeciesInfo(void)
     {
         #ifdef BATTLE_ENGINE
         if (gSpeciesInfo[species].abilities[2] != ABILITY_NONE)
-            AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilityNames[gSpeciesInfo[species].abilities[2]]);
+            AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[gSpeciesInfo[species].abilities[2]].name);
         #else
         if (gSpeciesInfo[species].abilityHidden != ABILITY_NONE)           
-            AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilityNames[gSpeciesInfo[species].abilityHidden]);
+            AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gAbilitiesInfo[gSpeciesInfo[species].abilityHidden].name);
         #endif
         else
             AddTextPrinterParameterized3(WINDOW_INFO, 0, 0, HA_INFO_Y, sFontColor_Black, 0, gText_None);
@@ -2225,7 +2225,7 @@ static void PrintSearchableSpecies(u16 species)
     }
     else
     {
-        StringCopy(gStringVar1, gSpeciesNames[species]);
+        StringCopy(gStringVar1, GetSpeciesName(species));
         StringExpandPlaceholders(gStringVar4, sText_DexNav_SearchForRegisteredSpecies);
         AddTextPrinterParameterized3(WINDOW_REGISTERED, 1, 0, 0, sFontColor_White, TEXT_SKIP_DRAW, gStringVar4);
     }
@@ -2522,7 +2522,7 @@ bool8 TryFindHiddenPokemon(void)
 {
     u16 *stepPtr = GetVarPointer(VAR_DEXNAV_STEP_COUNTER);
     u32 attempts = 0;
-    u16 currSteps;
+    //u16 currSteps;
 
     if (!FlagGet(FLAG_SYS_DETECTOR_MODE) || FlagGet(FLAG_SYS_DEXNAV_SEARCH) || GetFlashLevel() > 0)
     {
@@ -2540,7 +2540,7 @@ bool8 TryFindHiddenPokemon(void)
         u16 species;
         u8 environment;
         u8 taskId;
-        u8 total;
+        //u8 total;
         const struct WildPokemonInfo* hiddenMonsInfo = gWildMonHeaders[headerId].hiddenMonsInfo;
         bool8 isHiddenMon = FALSE;
         
@@ -2671,7 +2671,7 @@ static void DrawHiddenSearchWindow(u8 width)
 
 static void DexNavDrawHiddenIcons(void)
 {
-    u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
+    //u8 searchLevel = sDexNavSearchDataPtr->searchLevel;
     u16 species = sDexNavSearchDataPtr->species;
     
     DrawHiddenSearchWindow(12);
