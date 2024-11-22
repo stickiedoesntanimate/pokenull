@@ -59,19 +59,6 @@ static const struct PartyMenuBoxInfoRects sPartyBoxInfoRects[] =
         },
         77, 4, 64, 16        // Description text
     },
-    {
-        BlitBitmapToPartyWindow_Equal, 
-        {
-            //The below are the x, y, width, and height for each of the following info
-            33,  1, 40, 13, // Nickname
-            3, 25, 32,  8, // Level 85,  1, 32,  8,
-           100,  1,  8,  8, // Gender 79,  1,  8,  8, 
-            33, 11, 24,  8, // HP
-            48, 11, 24,  8, // Max HP
-            48, 26, 56,  3  // HP bar
-        }, 
-        33, 13, 64, 16      // Description text (e.g. NO USE)
-    },//
 };
 
 
@@ -200,7 +187,6 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate[] =
     },
     DUMMY_WIN_TEMPLATE
 };
-
 
 static const struct WindowTemplate sDoublePartyMenuWindowTemplate[] =
 {
@@ -408,7 +394,6 @@ static const struct WindowTemplate sCancelButtonWindowTemplate =
     .baseBlock = 0x1C7,
 };
 
-
 static const struct WindowTemplate sMultiCancelButtonWindowTemplate =
 {
     .bg = 0,
@@ -615,7 +600,6 @@ static const u8 sSlotTilemap_MainNoHP[]  = INCBIN_U8("graphics/party_menu/slot_m
 static const u8 sSlotTilemap_Wide[]      = INCBIN_U8("graphics/party_menu/slot_wide.bin");
 static const u8 sSlotTilemap_WideNoHP[]  = INCBIN_U8("graphics/party_menu/slot_wide_no_hp.bin");
 static const u8 sSlotTilemap_WideEmpty[] = INCBIN_U8("graphics/party_menu/slot_wide_empty.bin");
-
 
 // Palette offsets
 static const u8 sGenderPalOffsets[] = {11, 12};
@@ -852,7 +836,7 @@ static const u8 *const sUnionRoomTradeMessages[] =
 };
 
 static const u32 sHeldItemGfx[] = INCBIN_U32("graphics/party_menu/hold_icons.4bpp");
-const u16 gHeldItemPalette[] = INCBIN_U16("graphics/party_menu/hold_icons.gbapal");
+static const u16 sHeldItemPalette[] = INCBIN_U16("graphics/party_menu/hold_icons.gbapal");
 
 static const struct OamData sOamData_HeldItem =
 {
@@ -894,7 +878,7 @@ const struct SpriteSheet gSpriteSheet_HeldItem =
     .data = sHeldItemGfx, .size = sizeof(sHeldItemGfx), .tag = TAG_HELD_ITEM
 };
 
-static const struct SpritePalette sSpritePalette_HeldItem =
+const struct SpritePalette sSpritePalette_HeldItem =
 {
     .data = gHeldItemPalette, .tag = TAG_HELD_ITEM
 };

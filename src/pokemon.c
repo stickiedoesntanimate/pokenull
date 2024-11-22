@@ -1121,7 +1121,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
         personality = Random32();
 
     // Determine original trainer ID
-    if (otIdType == OT_ID_RANDOM_NO_SHINY) // Pokemon cannot be shiny
+    if (otIdType == OT_ID_RANDOM_NO_SHINY)
     {
         value = Random32();
         isShiny = FALSE;
@@ -1133,13 +1133,6 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
     }
     else // Player is the OT
     {
-        #ifdef ITEM_SHINY_CHARM
-        u32 shinyRolls = (CheckBagHasItem(ITEM_SHINY_CHARM, 1)) ? 3 : 1;
-        #else
-        u32 shinyRolls = 1;
-        #endif
-        u32 i;
-        
         value = gSaveBlock2Ptr->playerTrainerId[0]
               | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
               | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
@@ -1180,28 +1173,7 @@ void CreateBoxMon(struct BoxPokemon *boxMon, u16 species, u8 level, u8 fixedIV, 
             isShiny = GET_SHINY_VALUE(value, personality) < SHINY_ODDS;
         }
     }
-                  | (gSaveBlock2Ptr->playerTrainerId[1] << 8)
-                  | (gSaveBlock2Ptr->playerTrainerId[2] << 16)
-                  | (gSaveBlock2Ptr->playerTrainerId[3] << 24);
-                  
-        for (i = 0; i < shinyRolls; i++)
-        {
-            if (Random() < SHINY_ODDS)
-                FlagSet(FLAG_SHINY_CREATION);   // use a flag bc of CreateDexNavWildMon
-        }
 
-        if (FlagGet(FLAG_SHINY_CREATION))
-        {
-            u8 nature = personality % NUM_NATURES;  // keep current nature
-            do {
-                personality = Random32();
-                personality = ((((Random() % SHINY_ODDS) ^ (HIHALF(value) ^ LOHALF(value))) ^ LOHALF(personality)) << 16) | LOHALF(personality);
-            } while (nature != GetNatureFromPersonality(personality));
-            
-            // clear the flag after use
-            FlagClear(FLAG_SHINY_CREATION);
-        }
-    }
     SetBoxMonData(boxMon, MON_DATA_PERSONALITY, &personality);
     SetBoxMonData(boxMon, MON_DATA_OT_ID, &value);
 
@@ -5994,9 +5966,8 @@ static inline bool32 CanFirstMonBoostHeldItemRarity(void)
 
 void SetWildMonHeldItem(void)
 {
-    if (!(gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE))
-      && !gDexnavBattle)
-    {
+    if (!(gBattleTypeFlags & (BATTLE_TYPE_LEGENDARY | BATTLE_TYPE_TRAINER | BATTLE_TYPE_PYRAMID | BATTLE_TYPE_PIKE))&& !gDexnavBattle)
+	{
         u16 rnd;
         u16 species;
         u16 count = (WILD_DOUBLE_BATTLE) ? 2 : 1;
@@ -6103,18 +6074,12 @@ static void Task_AnimateAfterDelay(u8 taskId)
     }
 }
 
-#define tIsShadow data[4]
-
 static void Task_PokemonSummaryAnimateAfterDelay(u8 taskId)
 {
     if (--gTasks[taskId].sAnimDelay == 0)
     {
         StartMonSummaryAnimation(READ_PTR_FROM_TASK(taskId, 0), gTasks[taskId].sAnimId);
-        if (gTasks[taskId].tIsShadow)
-            SummaryScreen_SetShadowAnimDelayTaskId_BW(TASK_NONE); // needed to track anim delay task for mon shadow in BW summary screen
-        else
-            SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
-
+        SummaryScreen_SetAnimDelayTaskId(TASK_NONE);
         DestroyTask(taskId);
     }
 }
@@ -6174,34 +6139,26 @@ void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, 
     }
 }
 
-void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneFrame, bool32 isShadow)
-{
-    if (!oneFrame && HasTwoFramesAnimation(species))
-        StartSpriteAnim(sprite, 1);
-    if (gSpeciesInfo[species].frontAnimDelay != 0)
-    {
-        // Animation has delay, start delay task
-        u8 taskId = CreateTask(Task_PokemonSummaryAnimateAfterDelay, 0);
-        STORE_PTR_IN_TASK(sprite, taskId, 0);
-        gTasks[taskId].sAnimId = gSpeciesInfo[species].frontAnimId;
-        gTasks[taskId].sAnimDelay = gSpeciesInfo[species].frontAnimDelay;
-        gTasks[taskId].tIsShadow = isShadow;  // needed to track anim delay task for mon shadow in BW summary screen
-
-        if (isShadow)
-            SummaryScreen_SetShadowAnimDelayTaskId_BW(taskId);
-        else
-            SummaryScreen_SetAnimDelayTaskId(taskId);
-
-        SetSpriteCB_MonAnimDummy(sprite);
-    }
-    else
-    {
-        // No delay, start animation
-        StartMonSummaryAnimation(sprite, gSpeciesInfo[species].frontAnimId);
-    }
-}
-
-#define tIsShadow data[4]
+//void PokemonSummaryDoMonAnimation(struct Sprite *sprite, u16 species, bool8 oneFrame)
+//{
+//    if (!oneFrame && HasTwoFramesAnimation(species))
+//        StartSpriteAnim(sprite, 1);
+//    if (gSpeciesInfo[species].frontAnimDelay != 0)
+//    {
+//        // Animation has delay, start delay task
+//        u8 taskId = CreateTask(Task_PokemonSummaryAnimateAfterDelay, 0);
+//        STORE_PTR_IN_TASK(sprite, taskId, 0);
+//        gTasks[taskId].sAnimId = gSpeciesInfo[species].frontAnimId;
+//        gTasks[taskId].sAnimDelay = gSpeciesInfo[species].frontAnimDelay;
+//        SummaryScreen_SetAnimDelayTaskId(taskId);
+//        SetSpriteCB_MonAnimDummy(sprite);
+//    }
+//    else
+//    {
+//        // No delay, start animation
+//        StartMonSummaryAnimation(sprite, gSpeciesInfo[species].frontAnimId);
+//    }
+//}
 
 void StopPokemonAnimationDelayTask(void)
 {
@@ -6296,8 +6253,7 @@ void HandleSetPokedexFlag(u16 nationalNum, u8 caseId, u32 personality)
         if (NationalPokedexNumToSpecies(nationalNum) == SPECIES_SPINDA)
             gSaveBlock2Ptr->pokedex.spindaPersonality = personality;
     }
-    
-    if (caseId == FLAG_SET_SEEN)
+	if (caseId == FLAG_SET_SEEN)
         TryIncrementSpeciesSearchLevel(nationalNum);    // encountering pokemon increments its search level
 }
 

@@ -517,7 +517,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav, MSGBOX_DEFAULT
 	closemessage
-
 	applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
 	waitmovement 0
 	applymovement OBJ_EVENT_ID_PLAYER, Common_Movement_WalkInPlaceFasterRight
@@ -565,6 +564,7 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav::
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav
 	waitfanfare
 	setflag FLAG_SYS_DEXNAV_GET
+	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait, MSGBOX_DEFAULT
@@ -758,10 +758,10 @@ LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex:
 	.string "{PLAYER} received the POKéDEX!$"
-LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo
+LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo:
 	.string "Oh, and take this too."
-LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav
-	.string "{PLAYER} received the POKéDEX!$"
+LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav:
+	.string "{PLAYER} received the DexNav!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex:
 	.string "PROF. BIRCH: The POKéDEX is a high-tech\n"
@@ -774,7 +774,7 @@ LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex:
 	.string "why, {RIVAL} looks for me while I'm out\l"
 	.string "doing fieldwork, and shows me.$"
 
-LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav
+LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav:
 	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV"
 
 LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait:
