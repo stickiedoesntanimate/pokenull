@@ -1336,7 +1336,7 @@ static void Task_NewGameBirchSpeechSub_InitPokeBall(u8 taskId)
     gSprites[spriteId].invisible = FALSE;
     gSprites[spriteId].data[0] = 0;
 
-    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 80, 0, 0, 32, PALETTES_BG, SPECIES_SILVALLY);
+    CreatePokeballSpriteToReleaseMon(spriteId, gSprites[spriteId].oam.paletteNum, 112, 100, 0, 0, 32, PALETTES_BG, SPECIES_SILVALLY);
     gTasks[taskId].func = Task_NewGameBirchSpeechSub_WaitForLotad;
     gTasks[sBirchSpeechMainTaskId].tTimer = 0;
 }
@@ -1457,7 +1457,7 @@ static void Task_NewGameBirchSpeech_WaitToShowGenderMenu(u8 taskId)
     if (!RunTextPrintersAndIsPrinter0Active())
     {
         NewGameBirchSpeech_ShowGenderMenu();
-        gTasks[taskId].func = Task_NewGameBirchSpeech_ChooseGender;
+        gTasks[taskId].func = Task_NewGameBirchSpeech_WhatsYourName;
     }
 }
 
@@ -2005,7 +2005,7 @@ static void NewGameBirchSpeech_StartFadePlatformIn(u8 taskId, u8 delay)
 
     taskId2 = CreateTask(Task_NewGameBirchSpeech_FadePlatformIn, 0);
     gTasks[taskId2].tMainTask = taskId;
-    gTasks[taskId2].tPalIndex = 0;
+    gTasks[taskId2].tPalIndex = 8;
     gTasks[taskId2].tDelayBefore = 8;
     gTasks[taskId2].tDelay = delay;
     gTasks[taskId2].tDelayTimer = delay;
