@@ -759,7 +759,7 @@ LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex:
 	.string "{PLAYER} received the POKéDEX!$"
 LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo:
-	.string "Oh, and take this too."
+	.string "Oh, and take this too.$"
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav:
 	.string "{PLAYER} received the DexNav!$"
 
@@ -775,7 +775,8 @@ LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex:
 	.string "doing fieldwork, and shows me.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav:
-	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV"
+	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV\n"
+	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait:
 	.string "PROF. BIRCH: Countless POKéMON\n"
