@@ -904,17 +904,6 @@ struct BattleScripting
     u8 windowsType; // B_WIN_TYPE_*
     u8 multiplayerId;
     u8 specialTrainerBattleType;
-    bool8 monCaught;
-    s32 savedDmg;
-    u16 savedMoveEffect; // For moves hitting multiple targets.
-    u16 moveEffect;
-    u16 multihitMoveEffect;
-    u8 illusionNickHack; // To properly display nick in STRINGID_ENEMYABOUTTOSWITCHPKMN.
-    bool8 fixedPopup;   // Force ability popup to stick until manually called back
-    u16 abilityPopupOverwrite;
-    u8 switchCase;  // Special switching conditions, eg. red card
-    u8 overrideBerryRequirements;
-    u8 stickyWebStatDrop; // To prevent Defiant activating on a Court Change'd Sticky Web
 };
 
 struct BattleSpriteInfo
