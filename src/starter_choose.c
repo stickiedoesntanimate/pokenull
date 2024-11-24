@@ -24,7 +24,7 @@
 #include "constants/songs.h"
 #include "constants/rgb.h"
 
-#define STARTER_MON_COUNT   3
+#define STARTER_MON_COUNT   1
 
 // Position of the sprite of the selected starter Pokémon
 #define STARTER_PKMN_POS_X (DISPLAY_WIDTH / 2)
@@ -41,7 +41,7 @@ static void Task_WaitForStarterSprite(u8 taskId);
 static void Task_AskConfirmStarter(u8 taskId);
 static void Task_HandleConfirmStarterInput(u8 taskId);
 static void Task_DeclineStarter(u8 taskId);
-static void Task_MoveStarterChooseCursor(u8 taskId);
+//static void Task_MoveStarterChooseCursor(u8 taskId);
 static void Task_CreateStarterLabel(u8 taskId);
 static void CreateStarterPokemonLabel(u8 selection);
 static u8 CreatePokemonFrontSprite(u16 species, u8 x, u8 y);
@@ -99,7 +99,7 @@ static const struct WindowTemplate sWindowTemplate_StarterLabel =
 static const u8 sPokeballCoords[STARTER_MON_COUNT][2] =
 {
     //{60, 64},
-    {120, 130},
+    {120, 88},
     //{180, 64},
 };
 
@@ -451,7 +451,7 @@ void CB2_ChooseStarter(void)
     //gSprites[spriteId].sTaskId = taskId;
     //gSprites[spriteId].sBallId = 0;
 
-    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[0][0], sPokeballCoords[0][0], 2);
+    spriteId = CreateSprite(&sSpriteTemplate_Pokeball, sPokeballCoords[0][0], sPokeballCoords[0][1], 2);
     gSprites[spriteId].sTaskId = taskId;
     gSprites[spriteId].sBallId = 0;
 
@@ -614,11 +614,11 @@ static void ClearStarterLabel(void)
     ScheduleBgCopyTilemapToVram(0);
 }
 
-static void Task_MoveStarterChooseCursor(u8 taskId)
-{
-    ClearStarterLabel();
-    gTasks[taskId].func = Task_CreateStarterLabel;
-}
+//static void Task_MoveStarterChooseCursor(u8 taskId)
+//{
+//    ClearStarterLabel();
+//    gTasks[taskId].func = Task_CreateStarterLabel;
+//}
 
 static void Task_CreateStarterLabel(u8 taskId)
 {

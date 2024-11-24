@@ -513,7 +513,8 @@ EventScript_RegisterProfBirch::
 LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAUL
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav, MSGBOX_DEFAULT
 	closemessage
@@ -559,7 +560,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav::
-	message LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo
 	playfanfare MUS_OBTAIN_ITEM
 	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav
 	waitfanfare
@@ -758,8 +758,10 @@ LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex:
 	.string "{PLAYER} received the POKéDEX!$"
+	
 LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo:
 	.string "Oh, and take this too.$"
+
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav:
 	.string "{PLAYER} received the DexNav!$"
 
