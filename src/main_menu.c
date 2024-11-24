@@ -2039,7 +2039,7 @@ static void NewGameBirchSpeech_StartFadePlatformOut(u8 taskId, u8 delay)
 
     taskId2 = CreateTask(Task_NewGameBirchSpeech_FadePlatformOut, 0);
     gTasks[taskId2].tMainTask = taskId;
-    gTasks[taskId2].tPalIndex = 0;
+    gTasks[taskId2].tPalIndex = 8;
     gTasks[taskId2].tDelayBefore = 8;
     gTasks[taskId2].tDelay = delay;
     gTasks[taskId2].tDelayTimer = delay;
