@@ -135,7 +135,7 @@
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_TEMP_1"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLETCHLING)",
@@ -148,7 +148,7 @@
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_TEMP_2"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIKIPEK)",
@@ -161,7 +161,7 @@
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_TEMP_3"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLETCHLING)",
@@ -174,7 +174,7 @@
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_TEMP_2"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIKIPEK)",
@@ -187,7 +187,7 @@
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "0"
+      "flag": "FLAG_TEMP_2"
     }
   ],
   "warp_events": [

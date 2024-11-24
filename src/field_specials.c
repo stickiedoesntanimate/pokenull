@@ -4280,7 +4280,7 @@ void PreparePartyForSkyBattle(void)
     CompactPartySlots();
 }
 //Bird Script
-#define MAX_BIRD_SPOTS 5
+#define MAX_BIRD_SPOTS 10
 
 static const u8 randomBirdArray[MAX_BIRD_SPOTS + 1][4] =
 {
@@ -4290,6 +4290,11 @@ static const u8 randomBirdArray[MAX_BIRD_SPOTS + 1][4] =
     [3]  = { 2, 1, 1, 0 },
     [4]  = { 2, 1, 1, 0 },
     [5]  = { 2, 1, 2, 0 },
+    [6]  = { 3, 2, 2, 1 },
+    [7]  = { 3, 2, 3, 2 },
+    [8]  = { 4, 2, 3, 2 },
+    [9]  = { 4, 3, 3, 2 },
+    [10] = { 4, 3, 4, 3 },
 };
 
 void SetRoofBirds(void)
