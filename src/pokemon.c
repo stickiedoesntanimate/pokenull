@@ -6086,10 +6086,7 @@ static void Task_PokemonSummaryAnimateAfterDelay(u8 taskId)
 
 void BattleAnimateFrontSprite(struct Sprite *sprite, u16 species, bool8 noCry, u8 panMode)
 {
-    if (gHitMarker & HITMARKER_NO_ANIMATIONS && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK)))
-        DoMonFrontSpriteAnimation(sprite, species, noCry, panMode | SKIP_FRONT_ANIM);
-    else
-        DoMonFrontSpriteAnimation(sprite, species, noCry, panMode);
+    DoMonFrontSpriteAnimation(sprite, species, noCry, panMode | SKIP_FRONT_ANIM);
 }
 
 void DoMonFrontSpriteAnimation(struct Sprite *sprite, u16 species, bool8 noCry, u8 panModeAnimFlag)
@@ -6169,15 +6166,7 @@ void StopPokemonAnimationDelayTask(void)
 
 void BattleAnimateBackSprite(struct Sprite *sprite, u16 species)
 {
-    if (gHitMarker & HITMARKER_NO_ANIMATIONS && !(gBattleTypeFlags & (BATTLE_TYPE_LINK | BATTLE_TYPE_RECORDED_LINK)))
-    {
-        sprite->callback = SpriteCallbackDummy;
-    }
-    else
-    {
-        LaunchAnimationTaskForBackSprite(sprite, GetSpeciesBackAnimSet(species));
-        sprite->callback = SpriteCallbackDummy_2;
-    }
+    sprite->callback = SpriteCallbackDummy_2;
 }
 
 // Identical to GetOpposingLinkMultiBattlerId but for the player
