@@ -1522,6 +1522,26 @@
                 "species": "SPECIES_BARBOACH"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 16,
+                "max_level": 16,
+                "species": "SPECIES_DWEBBLE"
+              },
+              {
+                "min_level": 15,
+                "max_level": 17,
+                "species": "SPECIES_HATENNA"
+              },
+              {
+                "min_level": 15,
+                "max_level": 16,
+                "species": "SPECIES_VULPIX_ALOLAN"
+              }
+            ]
           }
         },
         {
@@ -1589,6 +1609,26 @@
                 "min_level": 8,
                 "max_level": 8,
                 "species": "SPECIES_SKITTY"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_SALANDIT"
+              },
+              {
+                "min_level": 6,
+                "max_level": 8,
+                "species": "SPECIES_CARBINK"
+              },
+              {
+                "min_level": 7,
+                "max_level": 8,
+                "species": "SPECIES_KLINK"
               }
             ]
           }
@@ -1745,6 +1785,26 @@
                 "species": "SPECIES_CORPHISH"
               }
             ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 14,
+                "max_level": 14,
+                "species": "SPECIES_CUBONE"
+              },
+              {
+                "min_level": 13,
+                "max_level": 14,
+                "species": "SPECIES_SHROOMISH"
+              },
+              {
+                "min_level": 13,
+                "max_level": 15,
+                "species": "SPECIES_SCYTHER"
+              }
+            ]
           }
         },
         {
@@ -1897,6 +1957,26 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_CARVANHA"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 25,
+                "max_level": 26,
+                "species": "SPECIES_ROSELIA"
+              },
+              {
+                "min_level": 24,
+                "max_level": 25,
+                "species": "SPECIES_RIBOMBEE"
+              },
+              {
+                "min_level": 24,
+                "max_level": 25,
+                "species": "SPECIES_ARBOK"
               }
             ]
           }
@@ -3573,6 +3653,26 @@
                 "min_level": 40,
                 "max_level": 45,
                 "species": "SPECIES_WAILMER"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 23,
+                "max_level": 25,
+                "species": "SPECIES_TRUMBEAK"
+              },
+              {
+                "min_level": 22,
+                "max_level": 25,
+                "species": "SPECIES_SIMIPOUR"
+              },
+              {
+                "min_level": 23,
+                "max_level": 26,
+                "species": "SPECIES_GALVANTULA"
               }
             ]
           }
