@@ -903,8 +903,8 @@ struct BattleScripting
     u8 windowsType; // B_WIN_TYPE_*
     u8 multiplayerId;
     u8 specialTrainerBattleType;
-	bool8 monCaught;
 	bool8 expOnCatch;
+    bool8 monCaught;
     s32 savedDmg;
     u16 savedMoveEffect; // For moves hitting multiple targets.
     u16 moveEffect;
