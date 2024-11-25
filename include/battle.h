@@ -880,6 +880,7 @@ struct BattleScripting
     s32 painSplitHp;
     s32 bideDmg;
     u8 multihitString[6];
+    bool8 expOnCatch;
     u8 unused;
     u8 animArg1;
     u8 animArg2;
@@ -903,7 +904,6 @@ struct BattleScripting
     u8 windowsType; // B_WIN_TYPE_*
     u8 multiplayerId;
     u8 specialTrainerBattleType;
-	bool8 expOnCatch;
     bool8 monCaught;
     s32 savedDmg;
     u16 savedMoveEffect; // For moves hitting multiple targets.
