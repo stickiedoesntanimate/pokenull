@@ -5566,7 +5566,7 @@ static void CB2_ShowSummaryScreenToForgetMove(void)
     if (BW_SUMMARY_SCREEN)
         ShowPokemonSummaryScreen_BW(SUMMARY_MODE_NORMAL, gPlayerParty, gPartyMenu.slotId, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
     else
-        ShowSelectMovePokemonSummaryScreen(gPlayerParty, gPartyMenu.slotId, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuWhileLearningMove, gPartyMenu.data1);
+        ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gPlayerParty, gPartyMenu.slotId, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
 }
 
 static void CB2_ReturnToPartyMenuWhileLearningMove(void)
