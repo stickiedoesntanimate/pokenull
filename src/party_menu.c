@@ -2827,10 +2827,9 @@ static void SetPartyMonFieldSelectionActions(struct Pokemon *mons, u8 slotId)
             }
         }
     }
-    if (sPartyMenuInternal->numActions < 5 && CanMonLearnTMHM(&mons[slotId], ITEM_HM02 - ITEM_TM01)) // If Mon can learn HM02 and action list consists of < 4 moves, add FLY to action list
-        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, 5 + MENU_FIELD_MOVES);
-    if (sPartyMenuInternal->numActions < 5 && CanMonLearnTMHM(&mons[slotId], ITEM_HM05 - ITEM_TM01)) // If Mon can learn HM05 and action list consists of < 4 moves, add FLASH to action list
-        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, 1 + MENU_FIELD_MOVES);
+	if (sPartyMenuInternal->numActions < 5 && CanTeachMove(&mons[slotId], MOVE_FLY)) // If Mon can learn Fly and action list consists of < 4 moves, add FLY to action list	        AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, 5 + MENU_FIELD_MOVES);
+		if (sPartyMenuInternal->numActions < 5 && CanTeachMove(&mons[slotId], MOVE_FLASH - MOVE_FLY)) // If Mon can learn HM05 and action list consists of < 4 moves, add FLASH to action list
+			AppendToList(sPartyMenuInternal->actions, &sPartyMenuInternal->numActions, 1 + MENU_FIELD_MOVES);
     if (!InBattlePike())
     {
         if (GetMonData(&mons[1], MON_DATA_SPECIES) != SPECIES_NONE)
@@ -5567,7 +5566,7 @@ static void CB2_ShowSummaryScreenToForgetMove(void)
     if (BW_SUMMARY_SCREEN)
         ShowPokemonSummaryScreen_BW(SUMMARY_MODE_NORMAL, gPlayerParty, gPartyMenu.slotId, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
     else
-        ShowPokemonSummaryScreen(SUMMARY_MODE_NORMAL, gPlayerParty, gPartyMenu.slotId, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuFromSummaryScreen);
+        ShowSelectMovePokemonSummaryScreen(gPlayerParty, gPartyMenu.slotId, gPlayerPartyCount - 1, CB2_ReturnToPartyMenuWhileLearningMove, gPartyMenu.data1);
 }
 
 static void CB2_ReturnToPartyMenuWhileLearningMove(void)

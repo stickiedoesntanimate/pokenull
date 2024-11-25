@@ -126,35 +126,35 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLETCHLING)",
-      "x": 16,
-      "y": 5,
-      "elevation": 5,
-      "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
+      "x": 8,
+      "y": 14,
+      "elevation": 4,
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 3,
-      "movement_range_y": 0,
+      "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_1"
+      "flag": "FLAG_TEMP_3"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLETCHLING)",
       "x": 6,
       "y": 13,
       "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_LOOK_AROUND",
+      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
       "movement_range_x": 4,
-      "movement_range_y": 0,
+      "movement_range_y": 2,
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_2"
+      "flag": "FLAG_TEMP_3"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIKIPEK)",
-      "x": 4,
+      "x": 16,
       "y": 5,
-      "elevation": 4,
+      "elevation": 5,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 3,
       "movement_range_y": 0,
@@ -165,8 +165,8 @@
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(FLETCHLING)",
-      "x": 15,
-      "y": 6,
+      "x": 3,
+      "y": 5,
       "elevation": 4,
       "movement_type": "MOVEMENT_TYPE_WANDER_LEFT_AND_RIGHT",
       "movement_range_x": 4,
@@ -174,20 +174,20 @@
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_2"
+      "flag": "FLAG_TEMP_3"
     },
     {
       "graphics_id": "OBJ_EVENT_GFX_SPECIES(PIKIPEK)",
-      "x": 8,
-      "y": 14,
+      "x": 15,
+      "y": 6,
       "elevation": 4,
-      "movement_type": "MOVEMENT_TYPE_WANDER_AROUND",
+      "movement_type": "MOVEMENT_TYPE_WANDER_RIGHT_AND_LEFT",
       "movement_range_x": 4,
       "movement_range_y": 0,
       "trainer_type": "TRAINER_TYPE_BIRD",
       "trainer_sight_or_berry_tree_id": "0",
       "script": "NULL",
-      "flag": "FLAG_TEMP_2"
+      "flag": "FLAG_TEMP_3"
     }
   ],
   "warp_events": [
