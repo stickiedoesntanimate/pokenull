@@ -7,7 +7,6 @@
 #include "battle_tent.h"
 #include "battle_factory.h"
 #include "bg.h"
-#include "bw_summary_screen.h"
 #include "contest.h"
 #include "contest_effect.h"
 #include "data.h"
@@ -2413,10 +2412,7 @@ static void Task_HandleInputCantForgetHMsMoves(u8 taskId)
 
 u8 GetMoveSlotToReplace(void)
 {
-    if (BW_SUMMARY_SCREEN)
-        return GetMoveSlotToReplace_BW();
-    else
-        return sMoveSlotToReplace;
+    return sMoveSlotToReplace;
 }
 
 static void DrawPagination(void) // Updates the pagination dots at the top of the summary screen
@@ -4111,10 +4107,7 @@ static void SpriteCB_Pokemon(struct Sprite *sprite)
 // Normally destroys itself but it can be interrupted before the animation starts
 void SummaryScreen_SetAnimDelayTaskId(u8 taskId)
 {
-    if (BW_SUMMARY_SCREEN)
-        SummaryScreen_SetAnimDelayTaskId_BW(taskId);
-    else
-        sAnimDelayTaskId = taskId;
+    sAnimDelayTaskId = taskId;
 }
 
 static void SummaryScreen_DestroyAnimDelayTask(void)
