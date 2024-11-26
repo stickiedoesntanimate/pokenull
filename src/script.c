@@ -334,12 +334,8 @@ u8 *MapHeaderCheckScriptTable(u8 tag)
     }
 }
 
-extern void SetRoofBirds(void);
-
 void RunOnLoadMapScript(void)
 {
-    //Load bird script on map load
-    SetRoofBirds();
     MapHeaderRunScriptType(MAP_SCRIPT_ON_LOAD);
 }
 

@@ -4,6 +4,7 @@
 .set LOCALID_BIRCH, 8
 
 LittlerootTown_MapScripts::
+	map_script MAP_SCRIPT_ON_LOAD, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD
 	map_script MAP_SCRIPT_ON_TRANSITION, LittlerootTown_OnTransition
 	map_script MAP_SCRIPT_ON_FRAME_TABLE, LittlerootTown_OnFrame
 	map_script MAP_SCRIPT_ON_WARP_INTO_MAP_TABLE, LittlerootTown_OnWarp
@@ -38,6 +39,34 @@ LittlerootTown_MapScripts::
 	@ 3: Met Rival
 	@ 4: Received Pokedex
 
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD:
+	setflag FLAG_TEMP_1
+	setflag FLAG_TEMP_2
+	setflag FLAG_TEMP_3
+	setflag FLAG_TEMP_4
+	random 4
+	switch VAR_RESULT
+	case 0, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_2
+	case 1, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_3
+	case 2, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_4
+	case 3, LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_5
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_2:
+	clearflag FLAG_TEMP_1
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_3:
+	clearflag FLAG_TEMP_2
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_4:
+	clearflag FLAG_TEMP_4
+	return
+
+LittlerootTown_MapScripts_MAP_SCRIPT_ON_LOAD_5:
+	clearflag FLAG_TEMP_3
+	return
 
 LittlerootTown_OnTransition:
 	setflag FLAG_VISITED_LITTLEROOT_TOWN
