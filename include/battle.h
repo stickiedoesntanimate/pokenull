@@ -1153,5 +1153,3 @@ static inline struct Pokemon *GetBattlerParty(u32 battler)
 {
     return GetSideParty(GetBattlerSide(battler));
 }
-
-#endif // GUARD_BATTLE_H

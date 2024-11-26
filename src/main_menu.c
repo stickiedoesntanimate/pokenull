@@ -1857,7 +1857,7 @@ static void AddBirchSpeechObjects(u8 taskId)
     gSprites[birchSpriteId].oam.priority = 0;
     gSprites[birchSpriteId].invisible = TRUE;
     gTasks[taskId].tBirchSpriteId = birchSpriteId;
-    lotadSpriteId = NewGameBirchSpeech_CreateLotadSprite(100, 0x4B);
+    lotadSpriteId = NewGameBirchSpeech_CreateLotadSprite(100, 0x6B);
     gSprites[lotadSpriteId].callback = SpriteCB_Null;
     gSprites[lotadSpriteId].oam.priority = 0;
     gSprites[lotadSpriteId].invisible = TRUE;
