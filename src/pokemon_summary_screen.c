@@ -2712,7 +2712,7 @@ static void SetMonPicBackgroundPalette(bool8 isMonShiny)
 static void DrawExperienceProgressBar(struct Pokemon *unused)
 {
     s64 numExpProgressBarTicks;
-    //struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    struct PokeSummary *summary = &sMonSummaryScreen->summary;
     u16 *dst;
     u8 i;
 
@@ -4097,7 +4097,7 @@ static u8 CreateMonSprite(struct Pokemon *unused)
 
 static void SpriteCB_Pokemon(struct Sprite *sprite)
 {
-    struct PokeSummary *summary = &sMonSummaryScreen->summary;
+    //struct PokeSummary *summary = &sMonSummaryScreen->summary;
 
     if (!gPaletteFade.active && sprite->data[2] != 1)
     {
