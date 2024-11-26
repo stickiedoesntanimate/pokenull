@@ -3680,7 +3680,7 @@ static void PrintMovePowerAndAccuracy(u16 moveIndex)
            ConvertIntToDecimalStringN(gStringVar1, (10 * (MAX_FRIENDSHIP - monFriendship) / 25), STR_CONV_MODE_RIGHT_ALIGN, 3);
            text = gStringVar1;
         }
-        else if (gBattleMoves[moveIndex].power < 2)
+        else if (gMovesInfo[moveIndex].power < 2)
         {
             text = gText_ThreeDashes;
         }
@@ -3987,7 +3987,7 @@ static void SetMoveTypeIcons(void)
                 type |= 0xC0;
                 SetTypeSpritePosAndPal(type & 0x3F, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
             } else {
-                SetTypeSpritePosAndPal(gBattleMoves[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+                SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
             }
         }
         else
@@ -4031,7 +4031,7 @@ static void SetNewMoveTypeIcon(void)
                 type |= 0xC0;
                 SetTypeSpritePosAndPal(type & 0x3F, 85, 96, SPRITE_ARR_ID_TYPE + 4);
             } else {
-                SetTypeSpritePosAndPal(gBattleMoves[sMonSummaryScreen->newMove].type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+                SetTypeSpritePosAndPal(gMovesInfo[sMonSummaryScreen->newMove].type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
             }
         else
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
