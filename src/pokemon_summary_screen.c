@@ -302,9 +302,9 @@ static void HidePageSpecificSprites(void);
 static void SetTypeIcons(void);
 static void CreateMoveTypeIcons(void);
 static void SetMonTypeIcons(void);
-static void SetMoveTypeIcons(void);
+static void SetMoveTypeIcons(struct Pokemon *);
 static void SetContestMoveTypeIcons(void);
-static void SetNewMoveTypeIcon(void);
+static void SetNewMoveTypeIcon(struct Pokemon *);
 static void SwapMovesTypeSprites(u8, u8);
 static u8 LoadMonGfxAndSprite(struct Pokemon *, s16 *);
 static u8 CreateMonSprite(struct Pokemon *);
@@ -1977,7 +1977,7 @@ static void SwitchToMoveSelection(u8 taskId)
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
     PrintMoveDetails(move);
     PrintNewMoveDetailsOrCancelText();
-    SetNewMoveTypeIcon();
+    SetNewMoveTypeIcon(0);
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
@@ -2263,7 +2263,7 @@ static void SwapBoxMonMoves(struct BoxPokemon *mon, u8 moveIndex1, u8 moveIndex2
 
 static void Task_SetHandleReplaceMoveInput(u8 taskId)
 {
-    SetNewMoveTypeIcon();
+    SetNewMoveTypeIcon(0);
     CreateMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
     gTasks[taskId].func = Task_HandleReplaceMoveInput;
 }
@@ -3903,12 +3903,12 @@ static void SetTypeIcons(void)
         SetMonTypeIcons();
         break;
     case PSS_PAGE_BATTLE_MOVES:
-        SetMoveTypeIcons();
-        SetNewMoveTypeIcon();
+        SetMoveTypeIcons(0);
+        SetNewMoveTypeIcon(0);
         break;
     case PSS_PAGE_CONTEST_MOVES:
         SetContestMoveTypeIcons();
-        SetNewMoveTypeIcon();
+        SetNewMoveTypeIcon(0);
         break;
     }
 }
@@ -3966,7 +3966,7 @@ static void SetMonTypeIcons(void)
     }
 }
 
-static void SetMoveTypeIcons(void)
+static void SetMoveTypeIcons(struct Pokemon *mon)
 {
     u8 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
@@ -4008,7 +4008,7 @@ static void SetContestMoveTypeIcons(void)
     }
 }
 
-static void SetNewMoveTypeIcon(void)
+static void SetNewMoveTypeIcon(struct Pokemon *mon)
 {
     if (sMonSummaryScreen->newMove == MOVE_NONE)
     {
