@@ -1109,8 +1109,7 @@ static bool32 SelectMatchCallTrainer(void)
         return FALSE;
 
     matchCallId = GetTrainerMatchCallId(sMatchCallState.trainerId);
-    if (!((TrainerIsEligibleForRematch(matchCallId) && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId)
-+   || ShouldTrainerRequestBattle(matchCallId)))
+    if (!((TrainerIsEligibleForRematch(matchCallId) && GetRematchTrainerLocation(matchCallId) == gMapHeader.regionMapSectionId) || ShouldTrainerRequestBattle(matchCallId)))
         return FALSE;
 
     return TRUE;
