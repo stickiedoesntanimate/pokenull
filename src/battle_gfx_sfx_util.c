@@ -26,7 +26,6 @@
 #include "constants/rgb.h"
 #include "constants/battle_palace.h"
 #include "constants/battle_move_effects.h"
-//#include "constants/battle_script_commands.h"
 
 
 extern const struct CompressedSpriteSheet gSpriteSheet_EnemyShadow;
@@ -1174,6 +1173,12 @@ void SetBattlerShadowSpriteCallback(u8 battler, u16 species)
 
     if (gBattleSpritesDataPtr->battlerData[battler].transformSpecies != SPECIES_NONE)
         species = gBattleSpritesDataPtr->battlerData[battler].transformSpecies;
+    // If a Pokémon was caught, a shadow shouldn't be casted.
+    if (gBattleScripting.monCaught)
+        return;
+
+    if (gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies != SPECIES_NONE)
+        species = gBattleSpritesDataPtr->battlerData[battlerId].transformSpecies;
 
     if (gSpeciesInfo[SanitizeSpeciesId(species)].enemyMonElevation != 0)
         gSprites[gBattleSpritesDataPtr->healthBoxesData[battler].shadowSpriteId].callback = SpriteCB_EnemyShadow;

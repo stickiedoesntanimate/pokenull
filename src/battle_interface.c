@@ -34,7 +34,6 @@
 #include "constants/songs.h"
 #include "constants/items.h"
 #include "level_caps.h"
-#include "constants/battle_script_commands.h"
 
 enum
 {   // Corresponds to gHealthboxElementsGfxTable (and the tables after it) in graphics.c

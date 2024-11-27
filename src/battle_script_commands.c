@@ -14772,7 +14772,7 @@ static void Cmd_switchoutabilities(void)
             MarkBattlerForControllerExec(battler);
             break;
         case ABILITY_REGENERATOR:
-            gBattleMoveDamage = GetNonDynamaxMaxHP(battler) / 3;
+            gBattleMoveDamage = GetNonDynamaxMaxHP(gBattlerAttacker) / 3;
             gBattleMoveDamage += gBattleMons[battler].hp;
             if (gBattleMoveDamage > gBattleMons[battler].maxHP)
                 gBattleMoveDamage = gBattleMons[battler].maxHP;
