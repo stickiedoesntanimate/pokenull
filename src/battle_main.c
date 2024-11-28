@@ -3085,9 +3085,6 @@ static void BattleStartClearSetData(void)
     {
         gHitMarker |= HITMARKER_NO_ANIMATIONS;
     }
-    gBattleScripting.battleStyle = gSaveBlock2Ptr->optionsBattleStyle;
-    gBattleScripting.monCaught = FALSE;
-    gBattleScripting.expOnCatch = TRUE;
 
     gMultiHitCounter = 0;
     gBattleOutcome = 0;
@@ -5640,8 +5637,6 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
             && (B_EVOLUTION_AFTER_WHITEOUT >= GEN_6
                 || gBattleOutcome == B_OUTCOME_WON
                 || gBattleOutcome == B_OUTCOME_CAUGHT))
-				{
-        if (gLeveledUpInBattle == 0 || (gBattleOutcome != B_OUTCOME_WON && gBattleOutcome != B_OUTCOME_CAUGHT))
         {
             gBattleMainFunc = TryEvolvePokemon;
         }
@@ -5650,7 +5645,6 @@ static void FreeResetData_ReturnToOvOrDoEvolutions(void)
             gBattleMainFunc = ReturnFromBattleToOverworld;
             return;
         }
-		}
     }
 
     FreeAllWindowBuffers();
