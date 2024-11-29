@@ -12013,6 +12013,95 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_MUDDY_AREA",
+          "base_label": "gMuddyArea0",
+          "land_mons": {
+            "encounter_rate": 20,
+            "mons": [
+              {
+                "min_level": 4,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 4,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 5,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 4,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 4,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 4,
+                "max_level": 4,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 4,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 5,
+                "max_level": 6,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              }
+            ]
+          },
+          "hidden_mons": {
+            "encounter_rate": 0,
+            "mons": [
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER_PALDEAN"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER"
+              },
+              {
+                "min_level": 5,
+                "max_level": 5,
+                "species": "SPECIES_WOOPER"
+              }
+            ]
+          }
         }
       ]
     },

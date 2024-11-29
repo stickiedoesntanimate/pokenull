@@ -529,6 +529,20 @@
       "elevation": 3,
       "dest_map": "MAP_PETALBURG_WOODS",
       "dest_warp_id": "5"
+    },
+    {
+      "x": 40,
+      "y": 18,
+      "elevation": 3,
+      "dest_map": "MAP_MUDDY_AREA",
+      "dest_warp_id": "0"
+    },
+    {
+      "x": 41,
+      "y": 18,
+      "elevation": 3,
+      "dest_map": "MAP_MUDDY_AREA",
+      "dest_warp_id": "1"
     }
   ],
   "coord_events": [
