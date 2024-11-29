@@ -203,9 +203,9 @@ static const u32 sMainBgTiles[] = INCBIN_U32("graphics/ui_main_menu/main_tiles.4
 static const u32 sMainBgTilemap[] = INCBIN_U32("graphics/ui_main_menu/main_tiles.bin.lz");
 static const u16 sMainBgPalette[] = INCBIN_U16("graphics/ui_main_menu/main_tiles.gbapal");
 
-static const u32 sMainBgTilesFem[] = INCBIN_U32("graphics/ui_main_menu/main_tiles_fem.4bpp.lz");
-static const u32 sMainBgTilemapFem[] = INCBIN_U32("graphics/ui_main_menu/main_tiles_fem.bin.lz");
-static const u16 sMainBgPaletteFem[] = INCBIN_U16("graphics/ui_main_menu/main_tiles_fem.gbapal");
+//static const u32 sMainBgTilesFem[] = INCBIN_U32("graphics/ui_main_menu/main_tiles_fem.4bpp.lz");
+//static const u32 sMainBgTilemapFem[] = INCBIN_U32("graphics/ui_main_menu/main_tiles_fem.bin.lz");
+//static const u16 sMainBgPaletteFem[] = INCBIN_U16("graphics/ui_main_menu/main_tiles_fem.gbapal");
 
 static const u32 sScrollBgTiles[] = INCBIN_U32("graphics/ui_main_menu/scroll_tiles.4bpp.lz");
 static const u32 sScrollBgTilemap[] = INCBIN_U32("graphics/ui_main_menu/scroll_tiles.bin.lz");
@@ -214,13 +214,13 @@ static const u16 sScrollBgPalette[] = INCBIN_U16("graphics/ui_main_menu/scroll_t
 static const u16 sIconBox_Pal[] = INCBIN_U16("graphics/ui_main_menu/icon_shadow.gbapal");
 static const u32 sIconBox_Gfx[] = INCBIN_U32("graphics/ui_main_menu/icon_shadow.4bpp.lz");
 
-static const u16 sIconBox_PalFem[] = INCBIN_U16("graphics/ui_main_menu/icon_shadow_fem.gbapal");
-static const u32 sIconBox_GfxFem[] = INCBIN_U32("graphics/ui_main_menu/icon_shadow_fem.4bpp.lz");
+//static const u16 sIconBox_PalFem[] = INCBIN_U16("graphics/ui_main_menu/icon_shadow_fem.gbapal");
+//static const u32 sIconBox_GfxFem[] = INCBIN_U32("graphics/ui_main_menu/icon_shadow_fem.4bpp.lz");
 
 static const u16 sBrendanMugshot_Pal[] = INCBIN_U16("graphics/ui_main_menu/brendan_mugshot.gbapal");
 static const u32 sBrendanMugshot_Gfx[] = INCBIN_U32("graphics/ui_main_menu/brendan_mugshot.4bpp.lz");
-static const u16 sMayMugshot_Pal[] = INCBIN_U16("graphics/ui_main_menu/may_mugshot.gbapal");
-static const u32 sMayMugshot_Gfx[] = INCBIN_U32("graphics/ui_main_menu/may_mugshot.4bpp.lz");
+//static const u16 sMayMugshot_Pal[] = INCBIN_U16("graphics/ui_main_menu/may_mugshot.gbapal");
+//static const u32 sMayMugshot_Gfx[] = INCBIN_U32("graphics/ui_main_menu/may_mugshot.4bpp.lz");
 
 
 //
@@ -248,18 +248,18 @@ static const struct SpritePalette sSpritePal_BrendanMugshot =
     .tag = TAG_MUGSHOT
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_MayMugshot =
-{
-    .data = sMayMugshot_Gfx,
-    .size = 64*64*1/2,
-    .tag = TAG_MUGSHOT,
-};
+//static const struct CompressedSpriteSheet sSpriteSheet_MayMugshot =
+//{
+//    .data = sMayMugshot_Gfx,
+//    .size = 64*64*1/2,
+//    .tag = TAG_MUGSHOT,
+//};
 
-static const struct SpritePalette sSpritePal_MayMugshot =
-{
-    .data = sMayMugshot_Pal,
-    .tag = TAG_MUGSHOT
-};
+//static const struct SpritePalette sSpritePal_MayMugshot =
+//{
+//    .data = sMayMugshot_Pal,
+//    .tag = TAG_MUGSHOT
+//};
 
 static const union AnimCmd sSpriteAnim_Mugshot[] =
 {
@@ -297,12 +297,12 @@ static const struct CompressedSpriteSheet sSpriteSheet_IconBox =
     .tag = TAG_ICON_BOX,
 };
 
-static const struct CompressedSpriteSheet sSpriteSheet_IconBoxFem =
-{
-    .data = sIconBox_GfxFem,
-    .size = 32*32*1/2,
-    .tag = TAG_ICON_BOX,
-};
+//static const struct CompressedSpriteSheet sSpriteSheet_IconBoxFem =
+//{
+//    .data = sIconBox_GfxFem,
+//    .size = 32*32*1/2,
+//    .tag = TAG_ICON_BOX,
+//};
 
 static const struct SpritePalette sSpritePal_IconBox =
 {
@@ -310,11 +310,11 @@ static const struct SpritePalette sSpritePal_IconBox =
     .tag = TAG_ICON_BOX
 };
 
-static const struct SpritePalette sSpritePal_IconBoxFem =
-{
-    .data = sIconBox_PalFem,
-    .tag = TAG_ICON_BOX
-};
+//static const struct SpritePalette sSpritePal_IconBoxFem =
+//{
+//    .data = sIconBox_PalFem,
+//    .tag = TAG_ICON_BOX
+//};
 
 static const union AnimCmd sSpriteAnim_IconBox0[] =
 {
@@ -410,7 +410,7 @@ static void MainMenu_VBlankCB(void)
     LoadOam();
     ProcessSpriteCopyRequests();
     TransferPlttBuffer();
-    ChangeBgY(2, 128, BG_COORD_SUB); // This controls the scrolling of the scroll bg, remove it to stop scrolling
+    //ChangeBgY(2, 128, BG_COORD_SUB); // This controls the scrolling of the scroll bg, remove it to stop scrolling
 }
 
 //
@@ -611,10 +611,10 @@ static bool8 MainMenu_LoadGraphics(void) // Load all the tilesets, tilemaps, spr
         {
             DecompressAndCopyTileDataToVram(1, sMainBgTiles, 0, 0, 0);
         }
-        else
-        {
-            DecompressAndCopyTileDataToVram(1, sMainBgTilesFem, 0, 0, 0);
-        }
+        //else
+        //{
+            //DecompressAndCopyTileDataToVram(1, sMainBgTilesFem, 0, 0, 0);
+        //}
         sMainMenuDataPtr->gfxLoadState++;
         break;
     case 1:
@@ -624,10 +624,10 @@ static bool8 MainMenu_LoadGraphics(void) // Load all the tilesets, tilemaps, spr
             {
                 LZDecompressWram(sMainBgTilemap, sBg1TilemapBuffer);
             }
-            else
-            {
-                LZDecompressWram(sMainBgTilemapFem, sBg1TilemapBuffer);
-            }
+            //else
+            //{
+                //LZDecompressWram(sMainBgTilemapFem, sBg1TilemapBuffer);
+            //}
             sMainMenuDataPtr->gfxLoadState++;
         }
         break;
@@ -653,14 +653,14 @@ static bool8 MainMenu_LoadGraphics(void) // Load all the tilesets, tilemaps, spr
             LoadSpritePalette(&sSpritePal_BrendanMugshot);
             LoadPalette(sMainBgPalette, 0, 32);
         }
-        else
-        {
-            LoadCompressedSpriteSheet(&sSpriteSheet_IconBoxFem);
-            LoadSpritePalette(&sSpritePal_IconBoxFem);
-            LoadCompressedSpriteSheet(&sSpriteSheet_MayMugshot);
-            LoadSpritePalette(&sSpritePal_MayMugshot);
-            LoadPalette(sMainBgPaletteFem, 0, 32);
-        }
+        //else
+        //{
+        //    LoadCompressedSpriteSheet(&sSpriteSheet_IconBoxFem);
+        //    LoadSpritePalette(&sSpritePal_IconBoxFem);
+        //    LoadCompressedSpriteSheet(&sSpriteSheet_MayMugshot);
+        //    LoadSpritePalette(&sSpritePal_MayMugshot);
+        //    LoadPalette(sMainBgPaletteFem, 0, 32);
+        //}
         LoadPalette(sScrollBgPalette, 16, 32);
     }
         sMainMenuDataPtr->gfxLoadState++;
