@@ -517,6 +517,9 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav, MSGBOX_DEFAULT
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_TakeBoxLink, MSGBOX_DEFAULT
+	giveitem ITEM_POKEMON_BOX
+	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainBoxLink, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
 	waitmovement 0
@@ -761,6 +764,9 @@ LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex:
 	
 LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo:
 	.string "Oh, and take this too.$"
+	
+LittlerootTown_ProfessorBirchsLab_Text_TakeBoxLink:
+	.string "Take this as well.$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav:
 	.string "{PLAYER} received the DexNav!$"
@@ -779,6 +785,10 @@ LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex:
 LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav:
 	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV\n"
 	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV$"
+	
+LittlerootTown_ProfessorBirchsLab_Text_ExplainBoxLink:
+	.string "PLACEHOLDER FOR EXPLAINING THE BOXLINK\n"
+	.string "PLACEHOLDER FOR EXPLAINING THE BOXLINK$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait:
 	.string "PROF. BIRCH: Countless POKéMON\n"
