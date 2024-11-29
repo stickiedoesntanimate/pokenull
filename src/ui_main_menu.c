@@ -117,8 +117,8 @@ static void MainMenu_InitializeGPUWindows(void);
 
 static void CreateMugshot();
 static void DestroyMugshot();
-static void CreateIconShadow();
-static void DestroyIconShadow();
+//static void CreateIconShadow();
+//static void DestroyIconShadow();
 static u32 GetHPEggCyclePercent(u32 partyIndex);
 static void CreatePartyMonIcons();
 static void DestroyMonIcons();
@@ -423,7 +423,7 @@ static void MainMenu_FreeResources(void)
     try_free(sBg2TilemapBuffer);
     FreeAllWindowBuffers();
     DestroyMugshot();
-    DestroyIconShadow();
+    //DestroyIconShadow();
     DestroyMonIcons();
     DmaClearLarge16(3, (void *)VRAM, VRAM_SIZE, 0x1000);
 }
@@ -527,7 +527,7 @@ static bool8 MainMenu_DoGfxSetup(void)
         break;
     case 5: // Here is where the sprites are drawn and text is printed
         PrintToWindow(WINDOW_HEADER, FONT_WHITE);
-        CreateIconShadow();
+        //CreateIconShadow();
         CreatePartyMonIcons();
         CreateMugshot();
         CreateTask(Task_MainMenuWaitFadeIn, 0);
@@ -715,42 +715,42 @@ static void DestroyMugshot()
 #define ICON_BOX_1_START_Y          38
 #define ICON_BOX_X_DIFFERENCE       32
 #define ICON_BOX_Y_DIFFERENCE       32
-static void CreateIconShadow()
-{
-    u8 i = 0;
+//static void CreateIconShadow()
+//{
+//    u8 i = 0;
+//
+//    sMainMenuDataPtr->iconBoxSpriteIds[0] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y, 2);
+//    sMainMenuDataPtr->iconBoxSpriteIds[1] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y, 2);
+//    sMainMenuDataPtr->iconBoxSpriteIds[2] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y, 2);
+//    
+//    sMainMenuDataPtr->iconBoxSpriteIds[3] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
+//    sMainMenuDataPtr->iconBoxSpriteIds[4] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
+//    sMainMenuDataPtr->iconBoxSpriteIds[5] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
+//
+//   for(i = 0; i < gPlayerPartyCount; i++)
+//    {
+//        gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]].invisible = FALSE;
+//        StartSpriteAnim(&gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]], 0);
+//        gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]].oam.priority = 1;
+//    }
+//
+//    for(i = gPlayerPartyCount; i < 6; i++) // Hide Shadows For Mons that don't exist
+//    {
+//        gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]].invisible = TRUE;
+//    }
+//
+//    return;
+//}
 
-    sMainMenuDataPtr->iconBoxSpriteIds[0] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y, 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[1] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y, 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[2] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y, 2);
-    
-    sMainMenuDataPtr->iconBoxSpriteIds[3] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 0), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[4] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 1), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
-    sMainMenuDataPtr->iconBoxSpriteIds[5] = CreateSprite(&sSpriteTemplate_IconBox, ICON_BOX_1_START_X + (ICON_BOX_X_DIFFERENCE * 2), ICON_BOX_1_START_Y + (ICON_BOX_Y_DIFFERENCE * 1), 2);
-
-    for(i = 0; i < gPlayerPartyCount; i++)
-    {
-        gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]].invisible = FALSE;
-        StartSpriteAnim(&gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]], 0);
-        gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]].oam.priority = 1;
-    }
-
-    for(i = gPlayerPartyCount; i < 6; i++) // Hide Shadows For Mons that don't exist
-    {
-        gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]].invisible = TRUE;
-    }
-
-    return;
-}
-
-static void DestroyIconShadow()
-{
-    u8 i = 0;
-    for(i = 0; i < gPlayerPartyCount; i++)
-    {
-        DestroySprite(&gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]]);
-        sMainMenuDataPtr->iconBoxSpriteIds[i] = SPRITE_NONE;
-    }
-}
+//static void DestroyIconShadow()
+//{
+//    u8 i = 0;
+//    for(i = 0; i < gPlayerPartyCount; i++)
+//    {
+//        DestroySprite(&gSprites[sMainMenuDataPtr->iconBoxSpriteIds[i]]);
+//        sMainMenuDataPtr->iconBoxSpriteIds[i] = SPRITE_NONE;
+//    }
+//}
 
 static u32 GetHPEggCyclePercent(u32 partyIndex) // Random HP function from psf's hack written by Rioluwott
 {
