@@ -57,7 +57,19 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	setflag FLAG_SYS_POKENAV_GET
 	setflag FLAG_RECEIVED_POKENAV
 	setflag FLAG_HIDE_RUSTBORO_CITY_POKEMON_SCHOOL_SCOTT
-	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp, MSGBOX_DEFAULT
+	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenav, MSGBOX_DEFAULT
+	
+	//Dexnav
+	msgbox RustboroCity_DevonCorp_3F_Text_TakeDexNav, MSGBOX_DEFAULT
+	call RustboroCity_DevonCorp_3F_EventScript_ReceiveDexnav
+	msgbox RustboroCity_DevonCorp_3F_Text_ExplainDexnav, MSGBOX_DEFAULT
+	
+	//Box Link
+	msgbox RustboroCity_DevonCorp_3F_Text_TakeBoxLink, MSGBOX_DEFAULT
+	giveitem ITEM_POKEMON_BOX
+	msgbox RustboroCity_DevonCorp_3F_Text_ExplainBoxLink, MSGBOX_DEFAULT
+	
+	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneRestUp, MSGBOX_DEFAULT
 	closemessage
 	call Common_EventScript_OutOfCenterPartyHeal
 	msgbox RustboroCity_DevonCorp_3F_Text_MrStoneGoWithCautionAndCare, MSGBOX_DEFAULT
@@ -72,6 +84,31 @@ RustboroCity_DevonCorp_3F_EventScript_MeetPresident::
 	setvar VAR_RUSTBORO_CITY_STATE, 6
 	releaseall
 	end
+
+RustboroCity_DevonCorp_3F_Text_TakeDexNav:
+	.string "Take this."	
+
+RustboroCity_DevonCorp_3F_EventScript_ReceiveDexnav::
+	playfanfare MUS_OBTAIN_ITEM
+	message RustboroCity_DevonCorp_3F_Text_ReceivedDexnav
+	waitfanfare
+	setflag FLAG_SYS_DEXNAV_GET
+	return
+
+RustboroCity_DevonCorp_3F_Text_ReceivedDexnav:
+	.string "{PLAYER} received the DexNav!$"
+	
+RustboroCity_DevonCorp_3F_Text_ExplainDexnav:
+	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV\n"
+	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV$"	
+	
+RustboroCity_DevonCorp_3F_Text_TakeBoxLink:
+	.string "Take this too."	
+
+RustboroCity_DevonCorp_3F_Text_ExplainBoxLink:
+	.string "PLACEHOLDER FOR EXPLAINING THE BOXLINK\n"
+	.string "PLACEHOLDER FOR EXPLAINING THE BOXLINK$"	
+	
 
 RustboroCity_DevonCorp_3F_Movement_Unused:
 	walk_up
@@ -222,7 +259,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneWantYouToHaveThis:
 RustboroCity_DevonCorp_3F_Text_ReceivedPokenav:
 	.string "{PLAYER} received a POKéNAV.$"
 
-RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp:
+RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenav:
 	.string "MR. STONE: That device…\p"
 	.string "It's a POKéMON NAVIGATOR, or POKéNAV\n"
 	.string "for short.\p"
@@ -234,6 +271,7 @@ RustboroCity_DevonCorp_3F_Text_MrStoneExplainPokenavRestUp:
 	.string "By the way, I've heard that sinister\n"
 	.string "criminals--MAGMA and AQUA, I believe--\l"
 	.string "have been making trouble far and wide.\p"
+RustboroCity_DevonCorp_3F_Text_MrStoneRestUp:
 	.string "I think it would be best if you rested\n"
 	.string "up before you go on your way.$"
 

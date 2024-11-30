@@ -514,12 +514,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_GivePokedex::
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex, MSGBOX_DEFAULT
 	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex
 	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex, MSGBOX_DEFAULT
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo, MSGBOX_DEFAULT
-	call LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav, MSGBOX_DEFAULT
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_TakeBoxLink, MSGBOX_DEFAULT
-	giveitem ITEM_POKEMON_BOX
-	msgbox LittlerootTown_ProfessorBirchsLab_Text_ExplainBoxLink, MSGBOX_DEFAULT
 	closemessage
 	applymovement LOCALID_RIVAL, LittlerootTown_ProfessorBirchsLab_Movement_RivalApproachPlayer
 	waitmovement 0
@@ -560,13 +554,6 @@ LittlerootTown_ProfessorBirchsLab_EventScript_ReceivePokedex::
 	special SetUnlockedPokedexFlags
 	setflag FLAG_RECEIVED_POKEDEX_FROM_BIRCH
 	setvar VAR_CABLE_CLUB_TUTORIAL_STATE, 1
-	return
-
-LittlerootTown_ProfessorBirchsLab_EventScript_ReceiveDexnav::
-	playfanfare MUS_OBTAIN_ITEM
-	message LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav
-	waitfanfare
-	setflag FLAG_SYS_DEXNAV_GET
 	return
 
 LittlerootTown_ProfessorBirchsLab_EventScript_PokemonAwait::
@@ -761,15 +748,6 @@ LittlerootTown_ProfessorBirchsLab_Text_HeardYouBeatRivalTakePokedex:
 
 LittlerootTown_ProfessorBirchsLab_Text_ReceivedPokedex:
 	.string "{PLAYER} received the POKéDEX!$"
-	
-LittlerootTown_ProfessorBirchsLab_Text_TakeThisToo:
-	.string "Oh, and take this too.$"
-	
-LittlerootTown_ProfessorBirchsLab_Text_TakeBoxLink:
-	.string "Take this as well.$"
-
-LittlerootTown_ProfessorBirchsLab_Text_ReceivedDexnav:
-	.string "{PLAYER} received the DexNav!$"
 
 LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex:
 	.string "PROF. BIRCH: The POKéDEX is a high-tech\n"
@@ -781,14 +759,6 @@ LittlerootTown_ProfessorBirchsLab_Text_ExplainPokedex:
 	.string "and records its data in the POKéDEX,\l"
 	.string "why, {RIVAL} looks for me while I'm out\l"
 	.string "doing fieldwork, and shows me.$"
-
-LittlerootTown_ProfessorBirchsLab_Text_ExplainDexnav:
-	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV\n"
-	.string "PLACEHOLDER FOR EXPLAINING THE DEXNAV$"
-	
-LittlerootTown_ProfessorBirchsLab_Text_ExplainBoxLink:
-	.string "PLACEHOLDER FOR EXPLAINING THE BOXLINK\n"
-	.string "PLACEHOLDER FOR EXPLAINING THE BOXLINK$"
 
 LittlerootTown_ProfessorBirchsLab_Text_CountlessPokemonAwait:
 	.string "PROF. BIRCH: Countless POKéMON\n"
