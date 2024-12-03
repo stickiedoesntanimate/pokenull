@@ -621,6 +621,8 @@ extern const u8 EventScript_SelectWithoutRegisteredItem[];
 
 // overworld
 extern const u8 EventScript_WhiteOut[];
+extern const u8 EventScript_AfterWhiteOutMomHeal[];
+extern const u8 EventScript_AfterWhiteOutHeal[];
 extern const u8 EventScript_ResetMrBriney[];
 extern const u8 EventScript_DoLinkRoomExit[];
 extern const u8 CableClub_EventScript_TooBusyToNotice[];
@@ -656,5 +658,8 @@ extern const u8 EventScript_LostSignal[];
 extern const u8 EventScript_TooDark[];
 extern const u8 EventScript_MovedTooFast[];
 
+extern const u8 EventScript_CancelMessageBox[];
+extern const u8 Common_EventScript_ShowPokemonCenterSign[];
+extern const u8 Common_EventScript_ShowPokemartSign[];
 
 #endif // GUARD_EVENT_SCRIPTS_H
