@@ -58,6 +58,7 @@ static inline u16 Random(void)
 
 void SeedRng(u32 seed);
 void SeedRng2(u32 seed);
+u16 RandRange(u16 min, u16 max);
 rng_value_t LocalRandomSeed(u32 seed);
 
 static inline u16 Random2(void)
@@ -66,39 +67,6 @@ static inline u16 Random2(void)
 }
 
 void AdvanceRandom(void);
-typedef u32 rng_value_t;
-
-#define RNG_VALUE_EMPTY 0
-
-//Returns a 16-bit pseudorandom number
-u16 Random(void);
-u16 Random2(void);
-
-//Sets the initial seed value of the pseudorandom number generator
-void SeedRng(u16 seed);
-void SeedRng2(u16 seed);
-u16 RandRange(u16 min, u16 max);
-
-//Returns a 32-bit pseudorandom number
-#define Random32() (Random() | (Random() << 16))
-#define Random2_32() (Random2() | (Random2() << 16))
-
-static inline u16 LocalRandom(rng_value_t *val)
-{
-    *val = ISO_RANDOMIZE1(*val);
-    return *val >> 16;
-}
-
-static inline void AdvanceRandom(void)
-{
-    Random();
-}
-
-static inline rng_value_t LocalRandomSeed(u32 seed)
-{
-    return seed;
-}
-
 
 extern rng_value_t gRngValue;
 extern rng_value_t gRng2Value;
@@ -256,4 +224,5 @@ u32 RandomWeightedArrayDefault(enum RandomTag, u32 sum, u32 n, const u8 *weights
 const void *RandomElementArrayDefault(enum RandomTag, const void *array, size_t size, size_t count);
 
 u8 RandomWeightedIndex(u8 *weights, u8 length);
-// GUARD_RANDOM_H
+
+#endif // GUARD_RANDOM_H

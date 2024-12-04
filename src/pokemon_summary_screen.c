@@ -297,9 +297,9 @@ static void HidePageSpecificSprites(void);
 static void SetTypeIcons(void);
 static void CreateMoveTypeIcons(void);
 static void SetMonTypeIcons(void);
-static void SetMoveTypeIcons(struct Pokemon *);
+static void SetMoveTypeIcons(void);
 static void SetContestMoveTypeIcons(void);
-static void SetNewMoveTypeIcon(struct Pokemon *);
+static void SetNewMoveTypeIcon(void);
 static void SwapMovesTypeSprites(u8, u8);
 static u8 LoadMonGfxAndSprite(struct Pokemon *, s16 *);
 static u8 CreateMonSprite(struct Pokemon *);
@@ -2056,7 +2056,7 @@ static void SwitchToMoveSelection(u8 taskId)
     TilemapFiveMovesDisplay(sMonSummaryScreen->bgTilemapBuffers[PSS_PAGE_CONTEST_MOVES][0], 1, FALSE);
     PrintMoveDetails(move);
     PrintNewMoveDetailsOrCancelText();
-    SetNewMoveTypeIcon(0);
+    SetNewMoveTypeIcon();
     ScheduleBgCopyTilemapToVram(0);
     ScheduleBgCopyTilemapToVram(1);
     ScheduleBgCopyTilemapToVram(2);
@@ -2344,7 +2344,7 @@ static void SwapBoxMonMoves(struct BoxPokemon *mon, u8 moveIndex1, u8 moveIndex2
 
 static void Task_SetHandleReplaceMoveInput(u8 taskId)
 {
-    SetNewMoveTypeIcon(0);
+    SetNewMoveTypeIcon();
     CreateMoveSelectorSprites(SPRITE_ARR_ID_MOVE_SELECTOR1);
     gTasks[taskId].func = Task_HandleReplaceMoveInput;
 }
@@ -3988,12 +3988,12 @@ static void SetTypeIcons(void)
         SetMonTypeIcons();
         break;
     case PSS_PAGE_BATTLE_MOVES:
-        SetMoveTypeIcons(0);
-        SetNewMoveTypeIcon(0);
+        SetMoveTypeIcons();
+        SetNewMoveTypeIcon();
         break;
     case PSS_PAGE_CONTEST_MOVES:
         SetContestMoveTypeIcons();
-        SetNewMoveTypeIcon(0);
+        SetNewMoveTypeIcon();
         break;
     }
 }
@@ -4054,7 +4054,7 @@ static void SetMonTypeIcons(void)
     }
 }
 
-static void SetMoveTypeIcons(struct Pokemon *mon)
+static void SetMoveTypeIcons(void)
 {
     u32 i;
     struct PokeSummary *summary = &sMonSummaryScreen->summary;
@@ -4063,23 +4063,12 @@ static void SetMoveTypeIcons(struct Pokemon *mon)
 
     for (i = 0; i < MAX_MON_MOVES; i++)
     {
-        if (summary->moves[i] != MOVE_NONE) {
-            if (summary->moves[i] == MOVE_HIDDEN_POWER) {
-                u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
-                     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
-                     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
-                     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
-                     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
-                     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
-
-                u8 type = (15 * typeBits) / 63 + 1;
-                if (type >= TYPE_MYSTERY)
-                    type++;
-                type |= 0xC0;
-                SetTypeSpritePosAndPal(type & 0x3F, 85, 24 + (i * 16), i + SPRITE_ARR_ID_TYPE);
-            } else {
-                SetTypeSpritePosAndPal(gMovesInfo[summary->moves[i]].type, 85, 24 + (i * 16), i + SPRITE_ARR_ID_TYPE);
-            }
+        if (summary->moves[i] != MOVE_NONE)
+        {
+            type = gMovesInfo[summary->moves[i]].type;
+            if (P_SHOW_DYNAMIC_TYPES)
+                type = CheckDynamicMoveType(mon, summary->moves[i], 0);
+            SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
         else
         {
@@ -4101,7 +4090,7 @@ static void SetContestMoveTypeIcons(void)
     }
 }
 
-static void SetNewMoveTypeIcon(struct Pokemon *mon)
+static void SetNewMoveTypeIcon(void)
 {
     u32 type = gMovesInfo[sMonSummaryScreen->newMove].type;
     struct Pokemon *mon = &sMonSummaryScreen->currentMon;
@@ -4116,22 +4105,9 @@ static void SetNewMoveTypeIcon(struct Pokemon *mon)
     else
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
-            if (sMonSummaryScreen->newMove == MOVE_HIDDEN_POWER) {
-                u8 typeBits  = ((GetMonData(mon, MON_DATA_HP_IV) & 1) << 0)
-                     | ((GetMonData(mon, MON_DATA_ATK_IV) & 1) << 1)
-                     | ((GetMonData(mon, MON_DATA_DEF_IV) & 1) << 2)
-                     | ((GetMonData(mon, MON_DATA_SPEED_IV) & 1) << 3)
-                     | ((GetMonData(mon, MON_DATA_SPATK_IV) & 1) << 4)
-                     | ((GetMonData(mon, MON_DATA_SPDEF_IV) & 1) << 5);
-
-                u8 type = (15 * typeBits) / 63 + 1;
-                if (type >= TYPE_MYSTERY)
-                    type++;
-                type |= 0xC0;
-                SetTypeSpritePosAndPal(type & 0x3F, 85, 96, SPRITE_ARR_ID_TYPE + 4);
-            } else {
-                SetTypeSpritePosAndPal(gMovesInfo[sMonSummaryScreen->newMove].type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
-            }
+        {
+            SetTypeSpritePosAndPal(type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+        }
         else
         {
             SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
