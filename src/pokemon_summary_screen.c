@@ -538,7 +538,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_PROMPT_RELEARN] = {
         .bg = 0,
         .tilemapLeft = 22,
-        .tilemapTop = 2,
+        .tilemapTop = 11,
         .width = 8,
         .height = 2,
         .paletteNum = 15,
@@ -687,7 +687,7 @@ static const struct WindowTemplate sPageMovesTemplate[] = // This is used for bo
         .width = 20,
         .height = 4,
         .paletteNum = 6,
-        .baseBlock = 617,
+        .baseBlock = 611,
     },
 };
 static const u8 sTextColors[][3] =
@@ -3893,7 +3893,7 @@ static void PrintNewMoveDetailsOrCancelText(void)
         u16 move = sMonSummaryScreen->newMove;
 
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
-            PrintTextOnWindowToFit(windowId1, GetMoveName(move), 0, 65, 0, 0);
+            PrintTextOnWindowToFit(windowId1, GetMoveName(move), 0, 65, 0, 1);
         else
             PrintTextOnWindowToFit(windowId1, GetMoveName(move), 0, 65, 0, 0);
 
@@ -4057,7 +4057,7 @@ static void SetMoveTypeIcons(void)
             type = gMovesInfo[summary->moves[i]].type;
             if (P_SHOW_DYNAMIC_TYPES)
                 type = CheckDynamicMoveType(mon, summary->moves[i], 0);
-            SetTypeSpritePosAndPal(type, 85, 32 + (i * 16), i + SPRITE_ARR_ID_TYPE);
+            SetTypeSpritePosAndPal(type, 85, 24 + (i * 16), i + SPRITE_ARR_ID_TYPE);
         }
         else
         {
@@ -4095,11 +4095,11 @@ static void SetNewMoveTypeIcon(void)
     {
         if (sMonSummaryScreen->currPageIndex == PSS_PAGE_BATTLE_MOVES)
         {
-            SetTypeSpritePosAndPal(type, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+            SetTypeSpritePosAndPal(type, 85, 88, SPRITE_ARR_ID_TYPE + 4);
         }
         else
         {
-            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 85, 96, SPRITE_ARR_ID_TYPE + 4);
+            SetTypeSpritePosAndPal(NUMBER_OF_MON_TYPES + gMovesInfo[sMonSummaryScreen->newMove].contestCategory, 85, 88, SPRITE_ARR_ID_TYPE + 4);
         }
     }
 }
@@ -4315,7 +4315,7 @@ static void CreateMoveSelectorSprites(u8 idArrayStart)
 
         for (i = 0; i < MOVE_SELECTOR_SPRITES_COUNT; i++)
         {
-            spriteIds[i] = CreateSprite(&sMoveSelectorSpriteTemplate, i * 16 + 89, 40, subpriority);
+            spriteIds[i] = CreateSprite(&sMoveSelectorSpriteTemplate, i * 16 + 89, 32, subpriority);
             if (i == 0)
                 StartSpriteAnim(&gSprites[spriteIds[i]], 4); // left
             else if (i == 9)
