@@ -476,7 +476,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_POKEMON_INFO_TYPE] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 14,
+        .tilemapTop = 13,
         .width = 18,
         .height = 2,
         .paletteNum = 6,
@@ -503,7 +503,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_EXP] = {
         .bg = 0,
         .tilemapLeft = 10,
-        .tilemapTop = 14,
+        .tilemapTop = 13,
         .width = 11,
         .height = 4,
         .paletteNum = 6,
@@ -597,7 +597,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
     [PSS_DATA_WINDOW_INFO_ABILITY] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 6,
+        .tilemapTop = 16,
         .width = 18,
         .height = 4,
         .paletteNum = 6,
@@ -606,7 +606,7 @@ static const struct WindowTemplate sPageInfoTemplate[] =
     [PSS_DATA_WINDOW_INFO_MEMO] = {
         .bg = 0,
         .tilemapLeft = 11,
-        .tilemapTop = 11,
+        .tilemapTop = 9,
         .width = 18,
         .height = 6,
         .paletteNum = 6,
@@ -654,7 +654,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
     [PSS_DATA_WINDOW_EXP] = {
         .bg = 0,
         .tilemapLeft = 24,
-        .tilemapTop = 14,
+        .tilemapTop = 13,
         .width = 6,
         .height = 4,
         .paletteNum = 6,
@@ -2855,7 +2855,7 @@ static void DrawExperienceProgressBar(struct Pokemon *unused)
         u32 expSinceLastLevel = summary->exp - gExperienceTables[gSpeciesInfo[summary->species].growthRate][summary->level];
 
         // Calculate the number of 1-pixel "ticks" to illuminate in the experience progress bar.
-        // There are 8 tiles that make up the bar, and each tile has 8 "ticks". Hence, the numerator
+        // There are 8 tiles that make up the bar, and eac/((h tile has 8 "ticks". Hence, the numerator
         // is multiplied by 64.
         numExpProgressBarTicks = expSinceLastLevel * 64 / expBetweenLevels;
         if (numExpProgressBarTicks == 0 && expSinceLastLevel != 0)
@@ -4176,10 +4176,10 @@ static void SetMonTypeIcons(void)
     }
     else
     {
-        SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[0], 88, 144, SPRITE_ARR_ID_TYPE);
+        SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[0], 88, 48, SPRITE_ARR_ID_TYPE);
         if (gSpeciesInfo[summary->species].types[0] != gSpeciesInfo[summary->species].types[1])
         {
-            SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[1], 128, 144, SPRITE_ARR_ID_TYPE + 1);
+            SetTypeSpritePosAndPal(gSpeciesInfo[summary->species].types[1], 128, 48, SPRITE_ARR_ID_TYPE + 1);
             SetSpriteInvisibility(SPRITE_ARR_ID_TYPE + 1, FALSE);
         }
         else
