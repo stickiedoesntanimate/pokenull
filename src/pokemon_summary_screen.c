@@ -485,7 +485,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_LEFT] = {
         .bg = 0,
         .tilemapLeft = 10,
-        .tilemapTop = 7,
+        .tilemapTop = 6,
         .width = 6,
         .height = 6,
         .paletteNum = 6,
@@ -494,7 +494,7 @@ static const struct WindowTemplate sSummaryTemplate[] =
     [PSS_LABEL_WINDOW_POKEMON_SKILLS_STATS_RIGHT] = {
         .bg = 0,
         .tilemapLeft = 22,
-        .tilemapTop = 7,
+        .tilemapTop = 6,
         .width = 5,
         .height = 6,
         .paletteNum = 6,
@@ -636,7 +636,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
     [PSS_DATA_WINDOW_SKILLS_STATS_LEFT] = {
         .bg = 0,
         .tilemapLeft = 16,
-        .tilemapTop = 7,
+        .tilemapTop = 6,
         .width = 6,
         .height = 6,
         .paletteNum = 6,
@@ -645,7 +645,7 @@ static const struct WindowTemplate sPageSkillsTemplate[] =
     [PSS_DATA_WINDOW_SKILLS_STATS_RIGHT] = {
         .bg = 0,
         .tilemapLeft = 27,
-        .tilemapTop = 7,
+        .tilemapTop = 6,
         .width = 3,
         .height = 6,
         .paletteNum = 6,
@@ -1648,7 +1648,7 @@ static void CloseSummaryScreen(u8 taskId)
 #define STAT_EVS    2
 
 #define STATS_CORD_X    42
-#define STATS_CORD_Y    38
+#define STATS_CORD_Y    37
 
 #define STATS_STATS_BLOCK   169
 #define EVS_STATS_BLOCK     218
