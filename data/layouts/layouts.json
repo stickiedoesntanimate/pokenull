@@ -4420,6 +4420,16 @@
       "secondary_tileset": "gTileset_Rustboro",
       "border_filepath": "data/layouts/MuddyArea/border.bin",
       "blockdata_filepath": "data/layouts/MuddyArea/map.bin"
+    },
+    {
+      "id": "LAYOUT_ROUTE120CONNECTION",
+      "name": "Route120Connection_Layout",
+      "width": 25,
+      "height": 29,
+      "primary_tileset": "gTileset_General",
+      "secondary_tileset": "gTileset_Fortree",
+      "border_filepath": "data/layouts/Route120Connection/border.bin",
+      "blockdata_filepath": "data/layouts/Route120Connection/map.bin"
     }
   ]
 }

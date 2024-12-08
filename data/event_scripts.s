@@ -1155,3 +1155,5 @@ EventScript_VsSeekerChargingDone::
     
 
 	.include "data/maps/MuddyArea/scripts.inc"
+
+	.include "data/maps/Route120Connection/scripts.inc"
