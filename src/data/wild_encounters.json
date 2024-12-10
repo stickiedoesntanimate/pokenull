@@ -12171,6 +12171,10 @@
               }
             ]
           }
+        },
+        {
+          "map": "MAP_SCORCHED_SLAB_B1F",
+          "base_label": "gScorchedSlabB1F0"
         }
       ]
     },
