@@ -84,11 +84,11 @@ static const u8 sPartyMenuSpriteCoords[PARTY_LAYOUT_COUNT][PARTY_SIZE][4 * 2] =
     [PARTY_LAYOUT_SINGLE] =
     {
         { 24,  14,  38,  33, 104,  19,  24,  18},
-        {136,  22, 150,  41, 216,  27, 136,  26},
+        {136,  14, 150,  33, 216,  19, 136,  18},
         { 24,  54,  38,  73, 104,  59,  24,  58},
-        {136,  62, 150,  81, 216,  67, 136,  66},
+        {136,  54, 150,  73, 216,  59, 136,  58},
         { 24,  94,  38, 113, 104,  99,  24,  98},
-        {136, 102, 150, 121, 216, 107, 136, 106},
+        {136, 94, 150, 113, 216, 99, 136, 98},
     },
     [PARTY_LAYOUT_DOUBLE] =
     {
@@ -283,7 +283,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_Equal[] =
     {//Slot 1 right
         .bg = 0,
         .tilemapLeft = 15,
-        .tilemapTop = 1,
+        .tilemapTop = 0,
         .width = 14,
         .height = 5,
         .paletteNum = 4,
@@ -301,7 +301,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_Equal[] =
     {//Slot 3 right
         .bg = 0,
         .tilemapLeft = 15,
-        .tilemapTop = 6,
+        .tilemapTop = 5,
         .width = 14,
         .height = 5,
         .paletteNum = 6,
@@ -319,7 +319,7 @@ static const struct WindowTemplate sSinglePartyMenuWindowTemplate_Equal[] =
     {//Slot 5 right
         .bg = 0,
         .tilemapLeft = 15,
-        .tilemapTop = 11,
+        .tilemapTop = 10,
         .width = 14,
         .height = 5,
         .paletteNum = 8,
