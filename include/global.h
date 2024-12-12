@@ -1129,7 +1129,7 @@ struct SaveBlock1
                u8 dexNavChain;
 			   /*0x3???*/ struct WaldaPhrase waldaPhrase;
 
-    /*0x3???*/ struct WaldaPhrase waldaPhrase;
+    /*0x3???*/ 
                u8 registeredItemLastSelected:4; //max 16 items
                u8 registeredItemListCount:4;
                struct RegisteredItemSlot registeredItems[REGISTERED_ITEMS_MAX];
