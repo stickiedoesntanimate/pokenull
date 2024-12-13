@@ -1265,7 +1265,7 @@ static void CreateCancelConfirmPokeballSprites(void)
     if (gPartyMenu.menuType == PARTY_MENU_TYPE_MULTI_SHOWCASE)
     {
         // The showcase has no Cancel/Confirm buttons
-        FillBgTilemapBufferRect(1, 14, 23, 17, 7, 2, 1);
+        FillBgTilemapBufferRect(1, 14, 23, 16, 7, 4, 1);
     }
     else
     {
@@ -1309,9 +1309,9 @@ void AnimatePartySlot(u8 slot, u8 animNum)
         if (!sPartyMenuInternal->chooseHalf)
         {
             if (animNum == 0)
-                SetBgTilemapPalette(1, 23, 17, 7, 2, 1);
+                SetBgTilemapPalette(1, 23, 16, 7, 4, 1);
             else
-                SetBgTilemapPalette(1, 23, 17, 7, 2, 2);
+                SetBgTilemapPalette(1, 23, 16, 7, 4, 2);
         }
         else if (animNum == 0)
         {
