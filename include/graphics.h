@@ -3390,4 +3390,9 @@ extern const u32 gBattleIcons_Gfx2[];
 extern const u32 gBattleIcons_Pal1[];
 extern const u32 gBattleIcons_Pal2[];
 
+extern const u32 gItemIcon_WonderTicket[];
+extern const u32 gItemIconPalette_WonderTicket[];
+
+extern const u32 gItemIconPalette_InfiniteWonderTicket[];
+
 #endif //GUARD_GRAPHICS_H

@@ -1100,19 +1100,33 @@ EventScript_DoWonderTrade::
 	msgbox EventScript_DoWonderTrade_Text_WannaDoWonderTrade, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_EndCloseMsg
-	goto EventScript_StartWonderTrade
-EventScript_StartWonderTrade::
+	goto EventScript_CheckWonderTicket
+EventScript_CheckWonderTicket::
+	checkitem ITEM_WONDER_TICKET_INFINITE
+	goto_if_eq VAR_RESULT, TRUE, EventScript_PickWonderMon
+	checkitem ITEM_WONDER_TICKET
+	goto_if_eq VAR_RESULT, TRUE, EventScript_PickWonderMon
+	msgbox EventScript_Text_NoTicket, MSGBOX_DEFAULT
+	closemessage
+	end
+EventScript_PickWonderMon::
 	special ChoosePartyMon
 	waitstate
 	compare VAR_0x8004, PARTY_SIZE
 	goto_if_ge EventScript_End
 	copyvar VAR_0x8005, VAR_0x8004
+	checkitem ITEM_WONDER_TICKET_INFINITE
+	goto_if_eq VAR_RESULT, TRUE, EventScript_StartWonderTrade
+	checkitem ITEM_WONDER_TICKET
+	removeitem ITEM_WONDER_TICKET
+	goto_if_eq VAR_RESULT, TRUE, EventScript_StartWonderTrade
+EventScript_StartWonderTrade::
 	special CreateWonderTradePokemon
 	special DoInGameTradeScene
 	waitstate
 	msgbox EventScript_DoWonderTrade_Text_WannaDoAnotherWonderTrade, MSGBOX_YESNO
 	compare VAR_RESULT, YES
-	goto_if_eq EventScript_StartWonderTrade
+	goto_if_eq EventScript_CheckWonderTicket
 	msgbox EventScript_DoWonderTrade_Text_Done, MSGBOX_DEFAULT
 	closemessage
 EventScript_EndCloseMsg:
@@ -1120,6 +1134,8 @@ EventScript_EndCloseMsg:
 	end
 EventScript_End:
 	end
+EventScript_Text_NoTicket:
+	.string "I'm sorry.\n You can't trade without a ticket."
 EventScript_DoWonderTrade_Text_WannaDoWonderTrade:
 	.string "Do you want to do a Wonder Trade?\nIt'll cost you a Wonder Trade ticket.$"
 EventScript_DoWonderTrade_Text_WannaDoAnotherWonderTrade:

@@ -2099,3 +2099,10 @@ const u32 gItemIconPalette_SwapSnack[] = INCBIN_U32("graphics/items/icon_palette
 
 const u32 gItemIcon_TwiceSpicedRadish[] = INCBIN_U32("graphics/items/icons/twice_spiced_radish.4bpp.lz");
 const u32 gItemIconPalette_TwiceSpicedRadish[] = INCBIN_U32("graphics/items/icon_palettes/twice_spiced_radish.gbapal.lz");
+
+
+const u32 gItemIcon_WonderTicket[] = INCBIN_U32("graphics/items/icons/wonderticket.4bpp.lz");
+const u32 gItemIconPalette_WonderTicket[] = INCBIN_U32("graphics/items/icon_palettes/wonderticket.gbapal.lz");
+
+const u32 gItemIconPalette_InfiniteWonderTicket[] = INCBIN_U32("graphics/items/icon_palettes/infinitewonderticket.gbapal.lz");
+

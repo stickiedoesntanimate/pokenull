@@ -14093,4 +14093,32 @@ const struct Item gItemsInfo[] =
         .iconPic = gItemIcon_PokeshiDoll,
         .iconPalette = gItemIconPalette_PokeshiDoll,
     },
+    [ITEM_WONDER_TICKET] =
+    {
+        .name = _("Wonder Trade Ticket"),
+        .price = 2000,
+        .description = COMPOUND_STRING(
+            "A wooden toy\n"
+            "resembling a Poké-.\n"
+            "mon. Can be sold."),
+        .pocket = POCKET_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_WonderTicket,
+        .iconPalette = gItemIconPalette_WonderTicket,
+    },
+    [ITEM_WONDER_TICKET_INFINITE] =
+    {
+        .name = _("Infinite Wonder Ticket"),
+        .price = 0,
+        .description = COMPOUND_STRING(
+            "A wooden toy\n"
+            "resembling a Poké-.\n"
+            "mon. Can be sold."),
+        .pocket = POCKET_KEY_ITEMS,
+        .type = ITEM_USE_BAG_MENU,
+        .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
+        .iconPic = gItemIcon_WonderTicket,
+        .iconPalette = gItemIconPalette_InfiniteWonderTicket,
+    },
 };
