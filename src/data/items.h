@@ -14098,9 +14098,9 @@ const struct Item gItemsInfo[] =
         .name = _("Wonder Trade Ticket"),
         .price = 2000,
         .description = COMPOUND_STRING(
-            "A wooden toy\n"
-            "resembling a Poké-.\n"
-            "mon. Can be sold."),
+            "A ticket for\n"
+            "wonder trading.\n"
+            "Can be used once."),
         .pocket = POCKET_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,
@@ -14109,12 +14109,12 @@ const struct Item gItemsInfo[] =
     },
     [ITEM_WONDER_TICKET_INFINITE] =
     {
-        .name = _("Infinite Wonder Ticket"),
+        .name = _("Infinite Ticket"),
         .price = 0,
         .description = COMPOUND_STRING(
-            "A wooden toy\n"
-            "resembling a Poké-.\n"
-            "mon. Can be sold."),
+            "A ticket for wonder\n"
+            "trading. Can be\n"
+            "used Infinitely."),
         .pocket = POCKET_KEY_ITEMS,
         .type = ITEM_USE_BAG_MENU,
         .fieldUseFunc = ItemUseOutOfBattle_CannotUse,

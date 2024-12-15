@@ -1129,13 +1129,14 @@ EventScript_StartWonderTrade::
 	goto_if_eq EventScript_CheckWonderTicket
 	msgbox EventScript_DoWonderTrade_Text_Done, MSGBOX_DEFAULT
 	closemessage
+	end
 EventScript_EndCloseMsg:
 	closemessage
 	end
 EventScript_End:
 	end
 EventScript_Text_NoTicket:
-	.string "I'm sorry.\n You can't trade without a ticket."
+	.string "I'm sorry.\nYou can't trade without a ticket.$"
 EventScript_DoWonderTrade_Text_WannaDoWonderTrade:
 	.string "Do you want to do a Wonder Trade?\nIt'll cost you a Wonder Trade ticket.$"
 EventScript_DoWonderTrade_Text_WannaDoAnotherWonderTrade:
