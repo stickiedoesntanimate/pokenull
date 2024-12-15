@@ -1095,18 +1095,37 @@ EventScript_VsSeekerChargingDone::
 	waitstate
 	special VsSeekerResetObjectMovementAfterChargeComplete
 	releaseall
+
 EventScript_DoWonderTrade::
-	getpartysize
-	goto_if_eq VAR_RESULT, 0, EventScript_End
+	msgbox EventScript_DoWonderTrade_Text_WannaDoWonderTrade, MSGBOX_YESNO
+	compare VAR_RESULT, NO
+	goto_if_eq EventScript_EndCloseMsg
+	goto EventScript_StartWonderTrade
+EventScript_StartWonderTrade::
 	special ChoosePartyMon
 	waitstate
-	goto_if_ge VAR_0x8004, PARTY_SIZE, EventScript_End
+	compare VAR_0x8004, PARTY_SIZE
+	goto_if_ge EventScript_End
 	copyvar VAR_0x8005, VAR_0x8004
 	special CreateWonderTradePokemon
 	special DoInGameTradeScene
 	waitstate
+	msgbox EventScript_DoWonderTrade_Text_WannaDoAnotherWonderTrade, MSGBOX_YESNO
+	compare VAR_RESULT, YES
+	goto_if_eq EventScript_StartWonderTrade
+	msgbox EventScript_DoWonderTrade_Text_Done, MSGBOX_DEFAULT
+	closemessage
+EventScript_EndCloseMsg:
+	closemessage
+	end
 EventScript_End:
 	end
+EventScript_DoWonderTrade_Text_WannaDoWonderTrade:
+	.string "Do you want to do a Wonder Trade?\nIt'll cost you a Wonder Trade ticket.$"
+EventScript_DoWonderTrade_Text_WannaDoAnotherWonderTrade:
+	.string "Do you want to do another Wonder Trade?\nIt'll cost you another ticket.$"
+EventScript_DoWonderTrade_Text_Done:
+	.string "Enjoy your new Pokémon.$"
 
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/questionnaire.inc"
