@@ -389,7 +389,7 @@ static u16 PickRandomSpecies(void)
 {
     u8 rarermonchance = (Random() % 100);
     u16 species = 1;
-    if (rarermonchance >= 65)//35 for uncommon, 65 for common, -10 uncommon for rare, -10 common for superrare
+    if (rarermonchance >= 65 || FlagGet(FLAG_BADGE02_GET) == TRUE)//35 for uncommon, 65 for common, -10 uncommon for rare, -10 common for superrare
     {
         if (rarermonchance >= 75 || FlagGet(FLAG_BADGE05_GET) == TRUE)//and gym 5
         {
@@ -413,7 +413,7 @@ static u16 PickRandomSpecies(void)
     }
     if (species = SPECIES_ROTOM)
     {
-        rarermonchance = (Random() % 6);
+        rarermonchance = (Random() % 5);
         if (rarermonchance != 0)
         {
             species = 1064 + rarermonchance;
@@ -456,7 +456,7 @@ static u8 GetWonderTradeOT(u8 *name)
 void CreateWonderTradePokemon(void)
 {
     u16 wonderTradeSpecies = PickRandomSpecies();
-    u8 playerMonLevel = 3;
+    u8 playerMonLevel = 5;
 
     playerMonLevel += (Random() % 5);
     if (FlagGet(FLAG_BADGE01_GET) == TRUE)

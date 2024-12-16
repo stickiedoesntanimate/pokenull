@@ -14096,7 +14096,7 @@ const struct Item gItemsInfo[] =
     [ITEM_WONDER_TICKET] =
     {
         .name = _("Wonder Trade Ticket"),
-        .price = 2000,
+        .price = 3000,
         .description = COMPOUND_STRING(
             "A ticket for\n"
             "wonder trading.\n"
