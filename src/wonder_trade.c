@@ -43,7 +43,7 @@ struct WonderTrade {
     u16 requestedSpecies;
 };
 
-static const u16 sCommonMons[] = {//45% chance
+static const u16 sCommonMons[] = {
     SPECIES_VENIPEDE,
     SPECIES_NINCADA,
     SPECIES_PANSAGE,
@@ -121,7 +121,7 @@ static const u16 sCommonMons[] = {//45% chance
     SPECIES_CHINCHOU,
 };
 
-static const u16 sUncommonMons[] = {//25% chance
+static const u16 sUncommonMons[] = {
     SPECIES_WHIRLIPEDE,
     SPECIES_NINJASK,
     SPECIES_SIMISAGE,
@@ -202,13 +202,13 @@ static const u16 sUncommonMons[] = {//25% chance
     SPECIES_KLEFKI,
     SPECIES_MIMIKYU,
     SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM,
-    SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM,
-    SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM,
-    SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM,
-    SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM,
-    SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL,
-    SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL,
-    SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL,
+    //SPECIES_ALCREMIE_STRAWBERRY_MATCHA_CREAM,
+    //SPECIES_ALCREMIE_STRAWBERRY_MINT_CREAM,
+    //SPECIES_ALCREMIE_STRAWBERRY_LEMON_CREAM,
+    //SPECIES_ALCREMIE_STRAWBERRY_SALTED_CREAM,
+    //SPECIES_ALCREMIE_STRAWBERRY_RUBY_SWIRL,
+    //SPECIES_ALCREMIE_STRAWBERRY_CARAMEL_SWIRL,
+    //SPECIES_ALCREMIE_STRAWBERRY_RAINBOW_SWIRL,
     SPECIES_TOEDSCOOL,
     SPECIES_DRIFBLIM,
     SPECIES_BANETTE,
@@ -241,7 +241,7 @@ static const u16 sUncommonMons[] = {//25% chance
     SPECIES_EEVEE,
 };
 
-static const u16 sRareMons[] = {//20% chance
+static const u16 sRareMons[] = {
     SPECIES_SCOLIPEDE,
     SPECIES_SHEDINJA,
     SPECIES_TALONFLAME,
@@ -317,7 +317,7 @@ static const u16 sRareMons[] = {//20% chance
     SPECIES_AMAURA,
 };
 
-static const u16 sSuperRareMons[] = {//10% chance
+static const u16 sSuperRareMons[] = {
     SPECIES_DUDUNSPARCE_THREE_SEGMENT,
     SPECIES_MAUSHOLD_THREE,
     SPECIES_LYCANROC_DUSK,
@@ -353,30 +353,47 @@ static const u16 sSuperRareMons[] = {//10% chance
     SPECIES_LEAFEON,
     SPECIES_GLACEON,
     SPECIES_SYLVEON,
-    SPECIES_ARMALDO,
-    SPECIES_CRADILY,
-    SPECIES_CARRACOSTA,
-    SPECIES_ARCHEOPS,
-    SPECIES_TYRANTRUM,
-    SPECIES_AURORUS,
     SPECIES_LARVITAR,
-    SPECIES_PUPITAR,
     SPECIES_GOOMY,
-    SPECIES_SLIGGOO,
     SPECIES_FRIGIBAX,
-    SPECIES_ARCTIBAX,
-    //add other starters if yes
+    SPECIES_BULBASAUR,//Starters
+    SPECIES_CHARMANDER,
+    SPECIES_SQUIRTLE,
+    SPECIES_CHIKORITA,
+    SPECIES_CYNDAQUIL,
+    SPECIES_TOTODILE,
+    SPECIES_TREECKO,
+    SPECIES_TORCHIC,
+    SPECIES_MUDKIP,
+    SPECIES_PIPLUP,
+    SPECIES_CHIMCHAR,
+    SPECIES_TURTWIG,
+    SPECIES_SNIVY,
+    SPECIES_OSHAWOTT,
+    SPECIES_TEPIG,
+    SPECIES_FENNEKIN,
+    SPECIES_FROAKIE,
+    SPECIES_CHESPIN,
+    SPECIES_ROWLET,
+    SPECIES_LITTEN,
+    SPECIES_POPPLIO,
+    SPECIES_SCORBUNNY,
+    SPECIES_SOBBLE,
+    SPECIES_GROOKEY,
+    SPECIES_SPRIGATITO,
+    SPECIES_QUAXLY,
+    SPECIES_FUECOCO,
 };
 
 static u16 PickRandomSpecies(void)
 {
     u8 rarermonchance = (Random() % 100);
     u16 species = 1;
-    if (rarermonchance <= 55)//add unlocking rarities after gyms + dynamic levels
+    if (rarermonchance >= 65)//35 for uncommon, 65 for common, -10 uncommon for rare, -10 common for superrare
     {
-        if (rarermonchance <= 30)
+        if (rarermonchance >= 75 || FlagGet(FLAG_BADGE05_GET) == TRUE)//and gym 5
         {
-            if (rarermonchance <= 10)
+            if (rarermonchance <= 10 || FlagGet(FLAG_BADGE07_GET) == TRUE)//and gym 7
             {
             species = sSuperRareMons[Random() % NELEMS(sSuperRareMons)];
             }
@@ -412,7 +429,7 @@ static u8 GetWonderTradeOT(u8 *name)
         }
         name[8] = EOS;
     }
-    else                    // female OT selected
+    else// female OT selected
     {
         randGender = 0xFF;
         for (i = 0; i < 8; ++i)
@@ -428,6 +445,18 @@ void CreateWonderTradePokemon(void)
 {
     u16 wonderTradeSpecies = PickRandomSpecies();
     u8 playerMonLevel = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_LEVEL);
+
+    playerMonLevel += (Random() % 5);//vary the level by -2 to 3
+    playerMonLevel -= 2;
+    if (playerMonLevel >= 100 || playerMonLevel < 240)//special case because underflow
+    {
+        playerMonLevel = 100;
+    };
+    if (playerMonLevel <= || playerMonLevel > 240 )
+    {
+        playerMonLevel = 1;
+    };
+
     u16 newHeldItem = ITEM_NONE;
     u32 i;
     u8 abilityNum;
