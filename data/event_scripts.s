@@ -1144,6 +1144,31 @@ EventScript_DoWonderTrade_Text_WannaDoAnotherWonderTrade:
 EventScript_DoWonderTrade_Text_Done:
 	.string "Enjoy your new Pokémon.$"
 
+Script_TicketShop::
+	lock
+	faceplayer
+	message Text_TicketShopGreeting
+	waitmessage
+	pokemart Pokemart_TicketShop
+	msgbox Text_TicketShopEnd, MSGBOX_DEFAULT
+	release
+	end
+
+	.align 2
+Pokemart_TicketShop:
+	.2byte ITEM_WONDER_TICKET
+	.2byte ITEM_NONE
+	release
+	end
+
+Text_TicketShopGreeting:
+	.string "Welcome to the wonder ticket shop.\n"
+	.string "How can I help you?$"
+
+Text_TicketShopEnd:
+	.string "Please come again!$"
+
+
 	.include "data/scripts/pc_transfer.inc"
 	.include "data/scripts/questionnaire.inc"
 	.include "data/scripts/abnormal_weather.inc"

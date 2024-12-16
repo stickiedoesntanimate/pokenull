@@ -291,11 +291,11 @@ static const u16 sRareMons[] = {
     SPECIES_ZOROARK,
     SPECIES_ZOROARK_HISUI,
     SPECIES_ROTOM,
-    SPECIES_ROTOM_HEAT,
-    SPECIES_ROTOM_WASH,
-    SPECIES_ROTOM_MOW,
-    SPECIES_ROTOM_FAN,
-    SPECIES_ROTOM_FROST,
+    //SPECIES_ROTOM_HEAT,
+    //SPECIES_ROTOM_WASH,
+    //SPECIES_ROTOM_MOW,
+    //SPECIES_ROTOM_FAN,
+    //SPECIES_ROTOM_FROST,
     SPECIES_REUNICLUS,
     SPECIES_SEADRA,
     SPECIES_CRAWDAUNT,
@@ -411,6 +411,18 @@ static u16 PickRandomSpecies(void)
     {
         species = sCommonMons[Random() % NELEMS(sCommonMons)];
     }
+    if (species = SPECIES_ROTOM)
+    {
+        rarermonchance = (Random() % 6);
+        if (rarermonchance != 0)
+        {
+            species = 1064 + rarermonchance;
+        }
+    }
+    if (species = SPECIES_ALCREMIE_STRAWBERRY_RUBY_CREAM)
+    {
+        species += (Random() % 7);
+    }
     return species;
 }
 
@@ -444,48 +456,48 @@ static u8 GetWonderTradeOT(u8 *name)
 void CreateWonderTradePokemon(void)
 {
     u16 wonderTradeSpecies = PickRandomSpecies();
-    u8 playerMonLevel = 3
+    u8 playerMonLevel = 3;
 
     playerMonLevel += (Random() % 5);
     if (FlagGet(FLAG_BADGE01_GET) == TRUE)
     {
-        playerMonLevel += 7
+        playerMonLevel += 7;
         playerMonLevel += (Random() % 2);
-        playerMonLevel -= 2
+        playerMonLevel -= 2;
     };
     if (FlagGet(FLAG_BADGE02_GET) == TRUE)
     {
-        playerMonLevel += 3
+        playerMonLevel += 3;
     };
     if (FlagGet(FLAG_BADGE03_GET) == TRUE)
     {
-        playerMonLevel += 5
+        playerMonLevel += 5;
     };
     if (FlagGet(FLAG_BADGE04_GET) == TRUE)
     {
-        playerMonLevel += 5
+        playerMonLevel += 5;
     };
     if (FlagGet(FLAG_BADGE05_GET) == TRUE)
     {
-        playerMonLevel += 5
+        playerMonLevel += 5;
     };
     if (FlagGet(FLAG_BADGE06_GET) == TRUE)
     {
-        playerMonLevel += 4
+        playerMonLevel += 4;
         playerMonLevel += (Random() % 2);
-        playerMonLevel -= 2
+        playerMonLevel -= 2;
     };
     if (FlagGet(FLAG_BADGE07_GET) == TRUE)
     {
-        playerMonLevel += 8
+        playerMonLevel += 8;
         playerMonLevel += (Random() % 4);
-        playerMonLevel -= 4
+        playerMonLevel -= 4;
     };
     if (FlagGet(FLAG_BADGE08_GET) == TRUE)
     {
-        playerMonLevel += 3
+        playerMonLevel += 3;
         playerMonLevel += (Random() % 2);
-        playerMonLevel -= 2
+        playerMonLevel -= 2;
     };
 
     u16 newHeldItem = ITEM_NONE;
