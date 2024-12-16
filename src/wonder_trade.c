@@ -444,17 +444,48 @@ static u8 GetWonderTradeOT(u8 *name)
 void CreateWonderTradePokemon(void)
 {
     u16 wonderTradeSpecies = PickRandomSpecies();
-    u8 playerMonLevel = GetMonData(&gPlayerParty[gSpecialVar_0x8004], MON_DATA_LEVEL);
+    u8 playerMonLevel = 3
 
-    playerMonLevel += (Random() % 5);//vary the level by -2 to 3
-    playerMonLevel -= 2;
-    if (playerMonLevel >= 100 || playerMonLevel < 240)//special case because underflow
+    playerMonLevel += (Random() % 5);
+    if (FlagGet(FLAG_BADGE01_GET) == TRUE)
     {
-        playerMonLevel = 100;
+        playerMonLevel += 7
+        playerMonLevel += (Random() % 2);
+        playerMonLevel -= 2
     };
-    if (playerMonLevel <= || playerMonLevel > 240 )
+    if (FlagGet(FLAG_BADGE02_GET) == TRUE)
     {
-        playerMonLevel = 1;
+        playerMonLevel += 3
+    };
+    if (FlagGet(FLAG_BADGE03_GET) == TRUE)
+    {
+        playerMonLevel += 5
+    };
+    if (FlagGet(FLAG_BADGE04_GET) == TRUE)
+    {
+        playerMonLevel += 5
+    };
+    if (FlagGet(FLAG_BADGE05_GET) == TRUE)
+    {
+        playerMonLevel += 5
+    };
+    if (FlagGet(FLAG_BADGE06_GET) == TRUE)
+    {
+        playerMonLevel += 4
+        playerMonLevel += (Random() % 2);
+        playerMonLevel -= 2
+    };
+    if (FlagGet(FLAG_BADGE07_GET) == TRUE)
+    {
+        playerMonLevel += 8
+        playerMonLevel += (Random() % 4);
+        playerMonLevel -= 4
+    };
+    if (FlagGet(FLAG_BADGE08_GET) == TRUE)
+    {
+        playerMonLevel += 3
+        playerMonLevel += (Random() % 2);
+        playerMonLevel -= 2
     };
 
     u16 newHeldItem = ITEM_NONE;
