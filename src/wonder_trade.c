@@ -389,11 +389,11 @@ static u16 PickRandomSpecies(void)
 {
     u8 rarermonchance = (Random() % 100);
     u16 species = 1;
-    if (rarermonchance >= 65) && (FlagGet(FLAG_BADGE02_GET) == TRUE)//35 for uncommon, 65 for common, -10 uncommon for rare, -10 common for superrare
+    if (rarermonchance >= 65 && FlagGet(FLAG_BADGE02_GET) == TRUE)//35 for uncommon, 65 for common, -10 uncommon for rare, -10 common for superrare
     {
-        if (rarermonchance >= 75) && (FlagGet(FLAG_BADGE05_GET) == TRUE)//and gym 5
+        if (rarermonchance >= 75 && FlagGet(FLAG_BADGE05_GET) == TRUE)//and gym 5
         {
-            if (rarermonchance <= 10) && (FlagGet(FLAG_BADGE07_GET) == TRUE)//and gym 7
+            if (rarermonchance <= 10 && FlagGet(FLAG_BADGE07_GET) == TRUE)//and gym 7
             {
             species = sSuperRareMons[Random() % NELEMS(sSuperRareMons)];
             }
