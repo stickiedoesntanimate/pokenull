@@ -1095,8 +1095,138 @@ EventScript_VsSeekerChargingDone::
 	waitstate
 	special VsSeekerResetObjectMovementAfterChargeComplete
 	releaseall
-
 EventScript_DoWonderTrade::
+	goto_if_set FLAG_BADGE01_GET, EventScript_DoWonderTrade_3
+EventScript_DoWonderTrade_1:
+	goto_if_set FLAG_BADGE02_GET, EventScript_DoWonderTrade_8
+EventScript_DoWonderTrade_6:
+	goto_if_set FLAG_BADGE03_GET, EventScript_DoWonderTrade_13
+EventScript_DoWonderTrade_11:
+	goto_if_set FLAG_BADGE04_GET, EventScript_DoWonderTrade_18
+EventScript_DoWonderTrade_16:
+	goto_if_set FLAG_BADGE05_GET, EventScript_DoWonderTrade_23
+EventScript_DoWonderTrade_21:
+	goto_if_set FLAG_BADGE06_GET, EventScript_DoWonderTrade_28
+EventScript_DoWonderTrade_26:
+	goto_if_set FLAG_BADGE07_GET, EventScript_DoWonderTrade_33
+EventScript_DoWonderTrade_31:
+	goto_if_set FLAG_BADGE08_GET, EventScript_DoWonderTrade_38
+EventScript_DoWonderTrade_36:
+	goto EventScript_DoWonderTradeYesNo
+	return
+
+EventScript_DoWonderTrade_2:
+	msgbox Ticketsafterbadge01
+	giveitem ITEM_WONDER_TICKET
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE01_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_3:
+	goto_if_unset FLAG_RECIEVED_BADGE01_TICKETS, EventScript_DoWonderTrade_2
+	goto EventScript_DoWonderTrade_1
+
+EventScript_DoWonderTrade_7:
+	msgbox Ticketsafterbadgegeneric
+	giveitem ITEM_WONDER_TICKET, 2
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE02_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_8:
+	goto_if_unset FLAG_RECIEVED_BADGE02_TICKETS, EventScript_DoWonderTrade_7
+	goto EventScript_DoWonderTrade_6
+
+EventScript_DoWonderTrade_12:
+	msgbox TicketsafterbadgeRarePokemon
+	giveitem ITEM_WONDER_TICKET, 3
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE03_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_13:
+	goto_if_unset FLAG_RECIEVED_BADGE03_TICKETS, EventScript_DoWonderTrade_12
+	goto EventScript_DoWonderTrade_11
+
+EventScript_DoWonderTrade_17:
+	msgbox Ticketsafterbadgegeneric
+	giveitem ITEM_WONDER_TICKET, 4
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE04_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_18:
+	goto_if_unset FLAG_RECIEVED_BADGE04_TICKETS, EventScript_DoWonderTrade_17
+	goto EventScript_DoWonderTrade_16
+
+EventScript_DoWonderTrade_22:
+	msgbox Ticketsafterbadgegeneric
+	giveitem ITEM_WONDER_TICKET, 4
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE05_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_23:
+	goto_if_unset FLAG_RECIEVED_BADGE05_TICKETS, EventScript_DoWonderTrade_22
+	goto EventScript_DoWonderTrade_21
+
+EventScript_DoWonderTrade_27:
+	msgbox TicketsafterbadgeRarePokemon
+	giveitem ITEM_WONDER_TICKET, 5
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE06_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_28:
+	goto_if_unset FLAG_RECIEVED_BADGE06_TICKETS, EventScript_DoWonderTrade_27
+	goto EventScript_DoWonderTrade_26
+
+EventScript_DoWonderTrade_32:
+	msgbox TicketsafterbadgeRarePokemon
+	giveitem ITEM_WONDER_TICKET, 7
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE07_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_33:
+	goto_if_unset FLAG_RECIEVED_BADGE07_TICKETS, EventScript_DoWonderTrade_32
+	goto EventScript_DoWonderTrade_31
+
+EventScript_DoWonderTrade_37:
+	msgbox Ticketsafterbadgegeneric
+	giveitem ITEM_WONDER_TICKET, 10
+	call Isbagfull
+	setflag FLAG_RECIEVED_BADGE08_TICKETS
+	closemessage
+	end
+
+EventScript_DoWonderTrade_38:
+	goto_if_unset FLAG_RECIEVED_BADGE08_TICKETS, EventScript_DoWonderTrade_37
+	goto EventScript_DoWonderTrade_36
+
+
+
+Isbagfull:
+	goto_if_eq VAR_RESULT, FALSE, Common_EventScript_ShowBagIsFull
+    return
+
+Ticketsafterbadge01::
+	.string "Congratulations! You won a ticket\n for getting a badge!$"
+
+Ticketsafterbadgegeneric::
+	.string "Congratulations! You won some tickets\n for getting another badge!$"
+
+TicketsafterbadgeRarePokemon::
+	.string "Congratulations! You won some tickets\n for getting another badge!\p Rarer Pokémon are also able to appear.$"
+
+EventScript_DoWonderTradeYesNo::
 	msgbox EventScript_DoWonderTrade_Text_WannaDoWonderTrade, MSGBOX_YESNO
 	compare VAR_RESULT, NO
 	goto_if_eq EventScript_EndCloseMsg
