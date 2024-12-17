@@ -339,7 +339,7 @@
 #define P_FAMILY_YAMASK                  P_GEN_5_POKEMON
 #define P_FAMILY_TIRTOUGA                P_GEN_5_POKEMON
 #define P_FAMILY_ARCHEN                  P_GEN_5_POKEMON
-#define P_FAMILY_TRUBBISH                FALSE
+#define P_FAMILY_TRUBBISH                P_GEN_5_POKEMON
 #define P_FAMILY_ZORUA                   P_GEN_5_POKEMON
 #define P_FAMILY_MINCCINO                FALSE
 #define P_FAMILY_GOTHITA                 FALSE
@@ -392,7 +392,7 @@
 #define P_FAMILY_FROAKIE                 P_GEN_6_POKEMON
 #define P_FAMILY_BUNNELBY                P_GEN_6_POKEMON
 #define P_FAMILY_FLETCHLING              P_GEN_6_POKEMON
-#define P_FAMILY_SCATTERBUG              P_GEN_6_POKEMON
+#define P_FAMILY_SCATTERBUG              FALSE
 #define P_FAMILY_LITLEO                  FALSE
 #define P_FAMILY_FLABEBE                 FALSE
 #define P_FAMILY_SKIDDO                  P_GEN_6_POKEMON
@@ -563,7 +563,7 @@
 #define P_FAMILY_GLIMMET                 FALSE
 #define P_FAMILY_GREAVARD                FALSE
 #define P_FAMILY_FLAMIGO                 FALSE
-#define P_FAMILY_CETODDLE                FALSE
+#define P_FAMILY_CETODDLE                P_GEN_9_POKEMON
 #define P_FAMILY_VELUZA                  FALSE
 #define P_FAMILY_DONDOZO                 FALSE
 #define P_FAMILY_TATSUGIRI               FALSE
