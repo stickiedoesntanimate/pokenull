@@ -388,28 +388,65 @@ static const u16 sSuperRareMons[] = {
 static u16 PickRandomSpecies(void)
 {
     u8 rarermonchance = (Random() % 100);
+    rarermonchance += 1;
     u16 species = 1;
-    if (rarermonchance >= 65 && FlagGet(FLAG_BADGE02_GET) == TRUE)//35 for uncommon, 65 for common, -15 common for rare, -10 common for superrare
+    if (FlagGet(FLAG_BADGE03_GET) == TRUE)
     {
-        if (rarermonchance <= 50 && FlagGet(FLAG_BADGE05_GET) == TRUE)//and gym 5
+        if (FlagGet(FLAG_BADGE05_GET) == FALSE)
         {
-            if (rarermonchance <= 10 && FlagGet(FLAG_BADGE07_GET) == TRUE)//and gym 7
-            {
-            species = sSuperRareMons[Random() % NELEMS(sSuperRareMons)];
-            }
-            else
-            {
-            species = sRareMons[Random() % NELEMS(sRareMons)];
-            }
+            if (rarermonchance >= 30)
+        {
+            species = sUncommonMons[Random() % NELEMS(sUncommonMons)];
         }
         else
         {
-        species = sUncommonMons[Random() % NELEMS(sUncommonMons)];
+            species = sCommonMons[Random() % NELEMS(sCommonMons)];
+        }
+        }
+        else
+        {
+            if (rarermonchance >= 50)
+            {
+                species = sUncommonMons[Random() % NELEMS(sUncommonMons)];
+                if (rarermonchance <= 20)
+                {
+                    species = sRareMons[Random() % NELEMS(sRareMons)];
+                }
+            }
+            else
+            {
+                species = sCommonMons[Random() % NELEMS(sCommonMons)];
+            }
         }
     }
     else
     {
         species = sCommonMons[Random() % NELEMS(sCommonMons)];
+    }
+    if (FlagGet(FLAG_BADGE07_GET) == TRUE)
+    {
+        if (rarermonchance <= 60)
+        {
+            if (rarermonchance <= 35)
+            {
+                if (rarermonchance <= 15)
+                {
+                    species = sSuperRareMons[Random() % NELEMS(sSuperRareMons)];
+                }
+                else
+                {
+                    species = sRareMons[Random() % NELEMS(sRareMons)];
+                }
+            }
+            else
+            {
+                species = sUncommonMons[Random() % NELEMS(sCommonMons)];
+            }
+        }
+        else
+        {
+            species = sCommonMons[Random() % NELEMS(sCommonMons)];
+        }
     }
     if (species == SPECIES_ROTOM)
     {
