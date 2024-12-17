@@ -392,7 +392,7 @@ static u16 PickRandomSpecies(void)
     u16 species = 1;
     if (FlagGet(FLAG_BADGE03_GET) == TRUE)
     {
-        if (FlagGet(FLAG_BADGE05_GET) == FALSE)
+        if (FlagGet(FLAG_BADGE06_GET) == FALSE)
         {
             if (rarermonchance >= 30)
         {
@@ -427,9 +427,9 @@ static u16 PickRandomSpecies(void)
     {
         if (rarermonchance <= 60)
         {
-            if (rarermonchance <= 35)
+            if (rarermonchance <= 25)
             {
-                if (rarermonchance <= 15)
+                if (rarermonchance <= 10)
                 {
                     species = sSuperRareMons[Random() % NELEMS(sSuperRareMons)];
                 }
